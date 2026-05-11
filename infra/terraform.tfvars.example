@@ -1,0 +1,9 @@
+project     = "catafract"
+region      = "us-east-1"
+environment = "prod"
+
+# Origins allowed to call the contact Lambda. Add the deployed frontend URL.
+frontend_origins = [
+  "http://localhost:5173",
+  "https://catafract.com",
+]
