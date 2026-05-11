@@ -1,0 +1,8 @@
+node_modules
+infra
+workers
+*.tfstate
+*.tfstate.*
+.terraform
+*.zip
+.git
