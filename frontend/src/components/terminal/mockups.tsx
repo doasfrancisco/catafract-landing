@@ -31,8 +31,8 @@ function Mockup({
       <div
         className="catafract-terminal-tile-box"
         style={{
-          backgroundColor: "#0A1518",
-          border: "1px solid #1A3A3E",
+          backgroundColor: "var(--ct-surface-subtle)",
+          border: "1px solid var(--ct-border)",
           borderRadius: 8,
           height: 180,
           padding: 12,
@@ -56,7 +56,7 @@ function Mockup({
               width: titleBarWidth,
               height: 4,
               borderRadius: 2,
-              backgroundColor: "#1A3A3E",
+              backgroundColor: "var(--ct-border)",
             }}
           />
           <div style={{ flexGrow: 1 }} />
@@ -74,7 +74,7 @@ function Mockup({
       >
         <div
           className="catafract-terminal-tile-label-num"
-          style={{ ...mono, color: "#555555", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 10, lineHeight: "12px" }}
         >
           {num}
         </div>
@@ -82,7 +82,7 @@ function Mockup({
           className="catafract-terminal-tile-label-name"
           style={{
             ...mono,
-            color: "#CCCCCC",
+            color: "var(--ct-fg-2)",
             fontSize: 11,
             fontWeight: 600,
             lineHeight: "14px",
@@ -93,7 +93,7 @@ function Mockup({
         <div style={{ flexGrow: 1 }} />
         <div
           className="catafract-terminal-tile-label-size"
-          style={{ ...mono, color: "#444444", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-6)", fontSize: 10, lineHeight: "12px" }}
         >
           {size}
         </div>
@@ -104,7 +104,7 @@ function Mockup({
 
 const card = (h?: number): CSSProperties => ({
   backgroundColor: "#0F2124",
-  border: "1px solid #1A3A3E",
+  border: "1px solid var(--ct-border)",
   borderRadius: 3,
   ...(h !== undefined ? { height: h } : {}),
 });
@@ -113,7 +113,7 @@ const sideBar = (w: number) => ({
   width: w,
   height: 4,
   borderRadius: 2,
-  backgroundColor: "#1A3A3E",
+  backgroundColor: "var(--ct-border)",
 });
 
 /* 01 — dashboard */
@@ -142,7 +142,7 @@ function Dashboard() {
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
-              style={{ height: 5, borderRadius: 2, backgroundColor: "#1A3A3E" }}
+              style={{ height: 5, borderRadius: 2, backgroundColor: "var(--ct-border)" }}
             />
           ))}
         </div>
@@ -197,7 +197,7 @@ function Chat() {
                   width: 10,
                   height: 10,
                   borderRadius: "50%",
-                  backgroundColor: active ? "#22D3EE" : "#1A3A3E",
+                  backgroundColor: active ? "#22D3EE" : "var(--ct-border)",
                 }}
               />
               <div
@@ -205,7 +205,7 @@ function Chat() {
                   flexGrow: 1,
                   height: 3,
                   borderRadius: 1,
-                  backgroundColor: "#1A3A3E",
+                  backgroundColor: "var(--ct-border)",
                 }}
               />
             </div>
@@ -224,7 +224,7 @@ function Chat() {
             style={{
               alignSelf: "flex-start",
               backgroundColor: "#0F2124",
-              border: "1px solid #1A3A3E",
+              border: "1px solid var(--ct-border)",
               borderRadius: 6,
               height: 12,
               width: "75%",
@@ -243,7 +243,7 @@ function Chat() {
             style={{
               alignSelf: "flex-start",
               backgroundColor: "#0F2124",
-              border: "1px solid #1A3A3E",
+              border: "1px solid var(--ct-border)",
               borderRadius: 6,
               height: 12,
               width: "65%",
@@ -277,7 +277,7 @@ function Schedule() {
           border:
             i === highlightIdx
               ? "1px solid #22D3EE"
-              : "1px solid #1A3A3E",
+              : "1px solid var(--ct-border)",
           borderRadius: 2,
         }}
       />
@@ -305,7 +305,7 @@ function Schedule() {
               style={{
                 flex: 1,
                 borderRadius: 1,
-                backgroundColor: i === 3 ? "#22D3EE" : "#1A3A3E",
+                backgroundColor: i === 3 ? "#22D3EE" : "var(--ct-border)",
               }}
             />
           ))}
@@ -342,7 +342,7 @@ function Intake() {
                 width: w,
                 height: 3,
                 borderRadius: 1,
-                backgroundColor: "#1A3A3E",
+                backgroundColor: "var(--ct-border)",
               }}
             />
             <div style={{ ...card(14) }} />
@@ -492,7 +492,7 @@ function Settings() {
               display: "flex",
               alignItems: "center",
               gap: 6,
-              borderBottom: i < 3 ? "1px solid #1A3A3E" : "none",
+              borderBottom: i < 3 ? "1px solid var(--ct-border)" : "none",
               paddingBottom: i < 3 ? 6 : 0,
             }}
           >
@@ -509,7 +509,7 @@ function Settings() {
                   width: r.l1,
                   height: 4,
                   borderRadius: 1,
-                  backgroundColor: "#1A3A3E",
+                  backgroundColor: "var(--ct-border)",
                 }}
               />
               <div
@@ -526,8 +526,8 @@ function Settings() {
                 width: 22,
                 height: 12,
                 borderRadius: 6,
-                backgroundColor: r.on ? "#22D3EE" : "#0A1518",
-                border: r.on ? "none" : "1px solid #1A3A3E",
+                backgroundColor: r.on ? "#22D3EE" : "var(--ct-surface-subtle)",
+                border: r.on ? "none" : "1px solid var(--ct-border)",
                 flexShrink: 0,
                 boxSizing: "border-box",
               }}
@@ -615,8 +615,8 @@ export function ImageTile({
         aria-label={`Open ${filename}`}
         className="catafract-terminal-tile-box"
         style={{
-          backgroundColor: "#0A1518",
-          border: "1px solid #1A3A3E",
+          backgroundColor: "var(--ct-surface-subtle)",
+          border: "1px solid var(--ct-border)",
           borderRadius: 8,
           height: 180,
           padding: 0,
@@ -648,7 +648,7 @@ export function ImageTile({
       >
         <div
           className="catafract-terminal-tile-label-num"
-          style={{ ...mono, color: "#555555", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 10, lineHeight: "12px" }}
         >
           {num}
         </div>
@@ -656,7 +656,7 @@ export function ImageTile({
           className="catafract-terminal-tile-label-name"
           style={{
             ...mono,
-            color: "#CCCCCC",
+            color: "var(--ct-fg-2)",
             fontSize: 11,
             fontWeight: 600,
             lineHeight: "14px",
@@ -667,7 +667,7 @@ export function ImageTile({
         <div style={{ flexGrow: 1 }} />
         <div
           className="catafract-terminal-tile-label-size"
-          style={{ ...mono, color: "#444444", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-6)", fontSize: 10, lineHeight: "12px" }}
         >
           {size}
         </div>
@@ -708,8 +708,8 @@ export function PhoneTile({
         aria-label={`Open ${filename}`}
         className="catafract-terminal-phone-box"
         style={{
-          backgroundColor: "#0A1518",
-          border: "1px solid #1A3A3E",
+          backgroundColor: "var(--ct-surface-subtle)",
+          border: "1px solid var(--ct-border)",
           borderRadius: 18,
           width: 150,
           height: 324,
@@ -742,7 +742,7 @@ export function PhoneTile({
       >
         <div
           className="catafract-terminal-tile-label-num"
-          style={{ ...mono, color: "#555555", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 10, lineHeight: "12px" }}
         >
           {num}
         </div>
@@ -750,7 +750,7 @@ export function PhoneTile({
           className="catafract-terminal-tile-label-name"
           style={{
             ...mono,
-            color: "#CCCCCC",
+            color: "var(--ct-fg-2)",
             fontSize: 11,
             fontWeight: 600,
             lineHeight: "14px",
@@ -761,7 +761,7 @@ export function PhoneTile({
         <div style={{ flexGrow: 1 }} />
         <div
           className="catafract-terminal-tile-label-size"
-          style={{ ...mono, color: "#444444", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-6)", fontSize: 10, lineHeight: "12px" }}
         >
           {size}
         </div>
@@ -850,7 +850,7 @@ function TextTile({
       >
         <div
           className="catafract-terminal-tile-label-num"
-          style={{ ...mono, color: "#555555", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 10, lineHeight: "12px" }}
         >
           {num}
         </div>
@@ -858,7 +858,7 @@ function TextTile({
           className="catafract-terminal-tile-label-name"
           style={{
             ...mono,
-            color: "#CCCCCC",
+            color: "var(--ct-fg-2)",
             fontSize: 11,
             fontWeight: 600,
             lineHeight: "14px",
@@ -869,7 +869,7 @@ function TextTile({
         <div style={{ flexGrow: 1 }} />
         <div
           className="catafract-terminal-tile-label-size"
-          style={{ ...mono, color: "#444444", fontSize: 10, lineHeight: "12px" }}
+          style={{ ...mono, color: "var(--ct-fg-6)", fontSize: 10, lineHeight: "12px" }}
         >
           {size}
         </div>
@@ -922,7 +922,7 @@ function TileHeader({
         <span
           style={{
             ...mono,
-            color: "#666666",
+            color: "var(--ct-fg-5)",
             fontSize: 10,
             fontWeight: 500,
             lineHeight: "14px",
@@ -939,12 +939,12 @@ function TileHeader({
 
 /* ---------------------------- doctoc tiles ---------------------------- */
 
-const DOCTOC_BG = "#0A1812";
-const DOCTOC_BORDER = "#1A3E28";
-const DOCTOC_ACCENT = "#4EC86C";
-const DOCTOC_KEY = "#4EC86C";
-const DOCTOC_VAL = "#CCCCCC";
-const DOCTOC_DIM = "#5C7A65";
+const DOCTOC_BG = "var(--ct-doctoc-bg)";
+const DOCTOC_BORDER = "var(--ct-doctoc-border)";
+const DOCTOC_ACCENT = "var(--ct-green)";
+const DOCTOC_KEY = "var(--ct-green)";
+const DOCTOC_VAL = "var(--ct-fg-2)";
+const DOCTOC_DIM = "var(--ct-doctoc-dim)";
 
 function JsonLine({ k, v }: { k: string; v: ReactNode }) {
   return (
@@ -1040,7 +1040,7 @@ function DoctocMedication() {
             width: 36,
             height: 36,
             borderRadius: 6,
-            backgroundColor: "#143A22",
+            backgroundColor: "var(--ct-doctoc-chip)",
             border: `1px solid ${DOCTOC_BORDER}`,
             display: "flex",
             alignItems: "center",
@@ -1070,7 +1070,7 @@ function DoctocMedication() {
           <div
             style={{
               ...mono,
-              color: "#FFFFFF",
+              color: "var(--ct-fg)",
               fontSize: 11,
               fontWeight: 700,
               lineHeight: "14px",
@@ -1167,7 +1167,7 @@ function DoctocSwagger() {
                 color: DOCTOC_ACCENT,
                 fontSize: 9,
                 fontWeight: 700,
-                backgroundColor: "#143A22",
+                backgroundColor: "var(--ct-doctoc-chip)",
                 border: `1px solid ${DOCTOC_BORDER}`,
                 borderRadius: 3,
                 padding: "1px 5px",
@@ -1266,11 +1266,11 @@ export function DoctocGallery() {
 
 /* ---------------------------- pulso tiles ---------------------------- */
 
-const PULSO_BG = "#1A0A14";
-const PULSO_BORDER = "#3E1A2E";
-const PULSO_ACCENT = "#F472B6";
-const PULSO_DIM = "#7A5A6A";
-const PULSO_VAL = "#D4C0CC";
+const PULSO_BG = "var(--ct-pulso-bg)";
+const PULSO_BORDER = "var(--ct-pulso-border)";
+const PULSO_ACCENT = "var(--ct-pink)";
+const PULSO_DIM = "var(--ct-pulso-dim)";
+const PULSO_VAL = "var(--ct-fg-2)";
 
 function PulsoSchema() {
   const Table = ({
@@ -1284,7 +1284,7 @@ function PulsoSchema() {
       style={{
         flex: 1,
         minWidth: 0,
-        backgroundColor: "#2A1020",
+        backgroundColor: "var(--ct-pulso-panel)",
         border: `1px solid ${PULSO_BORDER}`,
         borderRadius: 5,
         padding: "5px 7px",
@@ -1405,7 +1405,7 @@ function PulsoReport() {
           style={{
             width: 110,
             flexShrink: 0,
-            backgroundColor: "#2A1020",
+            backgroundColor: "var(--ct-pulso-panel)",
             border: `1px solid ${PULSO_BORDER}`,
             borderRadius: 5,
             padding: "7px 8px",
@@ -1434,7 +1434,7 @@ function PulsoReport() {
           <div
             style={{
               ...mono,
-              color: "#FFFFFF",
+              color: "var(--ct-fg)",
               fontSize: 9,
               fontWeight: 700,
               lineHeight: "12px",
@@ -1610,7 +1610,7 @@ function FragmentRow({
       <div
         style={{
           ...cellBase,
-          color: r.obs ? "#F59E0B" : DOCTOC_ACCENT,
+          color: r.obs ? "var(--ct-amber)" : DOCTOC_ACCENT,
         }}
       >
         {r.apto}
@@ -1674,7 +1674,7 @@ function PulsoMigration() {
                 paddingInline: 4,
                 paddingBlock: 1,
                 borderRadius: 2,
-                backgroundColor: isAdd ? "#0F2416" : "#2A0F1A",
+                backgroundColor: isAdd ? "var(--ct-pulso-add)" : "var(--ct-pulso-del)",
               }}
             >
               <span

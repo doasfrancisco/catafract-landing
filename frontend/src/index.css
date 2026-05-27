@@ -11,6 +11,64 @@
   /* Fonts referenced by the ported terminal/graph (inline styles) */
   --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* ---------------------------------------------------------------
+   * Projects terminal + commit graph palette (--ct-*).
+   * Consumed via var() in the inline styles of the ported terminal/
+   * graph components. Light values here; html.dark overrides below
+   * with the original dark literals (so dark stays pixel-identical).
+   * Notepad++-style white editor + GitHub-light contribution graph.
+   * --------------------------------------------------------------- */
+  /* surfaces & borders */
+  --ct-surface: #ffffff;        /* card / terminal / inactive tab bg */
+  --ct-surface-subtle: #f6f8fa; /* tab bar bg */
+  --ct-border: #d0d7de;         /* borders, pipes, tabbar tail */
+  --ct-grid-empty: #ebedf0;     /* empty contribution cell */
+  /* text ramp (high → low emphasis) */
+  --ct-fg: #1f2328;
+  --ct-fg-2: #424a53;
+  --ct-fg-3: #656d76;
+  --ct-fg-4: #7d8590;
+  --ct-fg-5: #8c959f;
+  --ct-fg-6: #afb8c1;
+  /* flipping pairs */
+  --ct-pill-active-bg: #1f2328;
+  --ct-pill-active-fg: #ffffff;
+  --ct-tooltip-bg: #ffffff;
+  --ct-tooltip-border: #d0d7de;
+  --ct-tooltip-shadow: 0 8px 24px rgba(140, 149, 159, 0.25);
+  /* semantic accent hues — darkened "ink" for legible text on white */
+  --ct-cyan: #0891b2;   /* maxilar */
+  --ct-pink: #db2777;   /* pulso */
+  --ct-violet: #7c3aed; /* syntax */
+  --ct-amber: #b45309;  /* inmoba */
+  --ct-gray: #525252;   /* damelo */
+  --ct-green: #16a34a;  /* doctoc / shipped / won */
+  /* per-project active-tab tint */
+  --ct-tab-maxilar: #ecfeff;
+  --ct-tab-pulso: #fdf2f8;
+  --ct-tab-syntax: #f5f3ff;
+  --ct-tab-inmoba: #fffbeb;
+  --ct-tab-damelo: #f3f4f6;
+  --ct-tab-doctoc: #f0fdf4;
+  /* per-project inactive dot (pale accent on white) */
+  --ct-dot-maxilar: #7dd3e8;
+  --ct-dot-pulso: #f0a8cf;
+  --ct-dot-syntax: #c4b2f5;
+  --ct-dot-inmoba: #f5c97a;
+  --ct-dot-damelo: #cbcbcb;
+  --ct-dot-doctoc: #9bd9ab;
+  /* doctoc + pulso fake "file preview" tiles */
+  --ct-doctoc-bg: #f0fdf4;
+  --ct-doctoc-border: #bbf7d0;
+  --ct-doctoc-chip: #dcfce7;
+  --ct-doctoc-dim: #5f8c6f;
+  --ct-pulso-bg: #fdf2f8;
+  --ct-pulso-border: #fbcfe8;
+  --ct-pulso-panel: #fce7f3;
+  --ct-pulso-dim: #9d7888;
+  --ct-pulso-add: #dcfce7;
+  --ct-pulso-del: #fce7f3;
 }
 
 html.dark {
@@ -18,6 +76,51 @@ html.dark {
   --page-bg: #06060a;
   --grid-color: rgba(255, 255, 255, 0.06);
   --noise-opacity: 0.4;
+
+  /* --ct-* dark overrides = the original ported literals */
+  --ct-surface: #0a0a0a;
+  --ct-surface-subtle: #050505;
+  --ct-border: #1a1a1a;
+  --ct-grid-empty: #141414;
+  --ct-fg: #ffffff;
+  --ct-fg-2: #cccccc;
+  --ct-fg-3: #888888;
+  --ct-fg-4: #555555;
+  --ct-fg-5: #666666;
+  --ct-fg-6: #444444;
+  --ct-pill-active-bg: #ffffff;
+  --ct-pill-active-fg: #000000;
+  --ct-tooltip-bg: #050507;
+  --ct-tooltip-border: #1c1c20;
+  --ct-tooltip-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  --ct-cyan: #22d3ee;
+  --ct-pink: #f472b6;
+  --ct-violet: #a78bfa;
+  --ct-amber: #f59e0b;
+  --ct-gray: #a3a3a3;
+  --ct-green: #4ec86c;
+  --ct-tab-maxilar: #0f1a1c;
+  --ct-tab-pulso: #1f1018;
+  --ct-tab-syntax: #15122a;
+  --ct-tab-inmoba: #1f1708;
+  --ct-tab-damelo: #161618;
+  --ct-tab-doctoc: #0e1b12;
+  --ct-dot-maxilar: #1f4044;
+  --ct-dot-pulso: #5c1f3e;
+  --ct-dot-syntax: #3d2f5c;
+  --ct-dot-inmoba: #5c4316;
+  --ct-dot-damelo: #333336;
+  --ct-dot-doctoc: #1f3a28;
+  --ct-doctoc-bg: #0a1812;
+  --ct-doctoc-border: #1a3e28;
+  --ct-doctoc-chip: #143a22;
+  --ct-doctoc-dim: #5c7a65;
+  --ct-pulso-bg: #1a0a14;
+  --ct-pulso-border: #3e1a2e;
+  --ct-pulso-panel: #2a1020;
+  --ct-pulso-dim: #7a5a6a;
+  --ct-pulso-add: #0f2416;
+  --ct-pulso-del: #2a0f1a;
 }
 
 html,

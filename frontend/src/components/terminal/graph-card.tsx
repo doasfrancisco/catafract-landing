@@ -265,8 +265,8 @@ function GraphCardDesktop() {
     <div
       style={{
         width: "100%",
-        backgroundColor: "#0A0A0A",
-        border: "1px solid #1A1A1A",
+        backgroundColor: "var(--ct-surface)",
+        border: "1px solid var(--ct-border)",
         borderRadius: 12,
         paddingBlock: 24,
         paddingInline: 22,
@@ -280,7 +280,7 @@ function GraphCardDesktop() {
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
         <div
           style={{
-            color: "#FFFFFF",
+            color: "var(--ct-fg)",
             fontSize: 14,
             fontWeight: 600,
             lineHeight: "18px",
@@ -290,7 +290,7 @@ function GraphCardDesktop() {
         </div>
         <div
           style={{
-            color: "#555555",
+            color: "var(--ct-fg-4)",
             fontFamily: "var(--font-mono), monospace",
             fontSize: 11,
             lineHeight: "14px",
@@ -352,7 +352,7 @@ function GraphCardDesktop() {
               const y = gridRow * V_STRIDE;
               const isEmpty = cell.total === 0;
               const fill = isEmpty
-                ? "#141414"
+                ? "var(--ct-grid-empty)"
                 : PROJECT_COLORS[cell.dominant as ProjectKey];
               const opacity = cellOpacity(cell.total);
               const clickable = !isEmpty;
@@ -389,7 +389,7 @@ function GraphCardDesktop() {
                 key={m.name}
                 style={{
                   height: (m.g / 2) * V_STRIDE,
-                  color: "#666666",
+                  color: "var(--ct-fg-5)",
                   fontSize: 10,
                   lineHeight: "12px",
                 }}
@@ -412,7 +412,7 @@ function GraphCardDesktop() {
           gap: "10px 14px",
           justifyContent: "center",
           alignItems: "center",
-          borderTop: "1px solid #1A1A1A",
+          borderTop: "1px solid var(--ct-border)",
           paddingTop: 14,
         }}
       >
@@ -439,7 +439,7 @@ function GraphCardDesktop() {
             />
             <div
               style={{
-                color: "#CCCCCC",
+                color: "var(--ct-fg-2)",
                 fontSize: 11,
                 fontWeight: 500,
                 lineHeight: "13px",
@@ -470,12 +470,12 @@ function VerticalYearPill({
       style={{
         all: "unset",
         cursor: "pointer",
-        backgroundColor: active ? "#FFFFFF" : "transparent",
-        border: active ? "none" : "1px solid #222222",
+        backgroundColor: active ? "var(--ct-pill-active-bg)" : "transparent",
+        border: active ? "none" : "1px solid var(--ct-border)",
         borderRadius: 6,
         paddingBlock: active ? 7 : 6,
         paddingInline: 12,
-        color: active ? "#000000" : "#888888",
+        color: active ? "var(--ct-pill-active-fg)" : "var(--ct-fg-3)",
         fontSize: 11,
         fontWeight: active ? 700 : 500,
         lineHeight: "13px",
@@ -507,14 +507,14 @@ function VerticalTooltip({
         position: "absolute",
         right: "calc(100% + 12px)",
         top,
-        backgroundColor: "#050507",
-        border: "1px solid #1C1C20",
+        backgroundColor: "var(--ct-tooltip-bg)",
+        border: "1px solid var(--ct-tooltip-border)",
         borderRadius: 8,
         padding: "10px 12px",
         minWidth: 220,
         pointerEvents: "none",
         zIndex: 20,
-        boxShadow: "0 10px 24px rgba(0,0,0,0.5)",
+        boxShadow: "var(--ct-tooltip-shadow)",
       }}
     >
       {isCombined ? (
@@ -526,8 +526,8 @@ function VerticalTooltip({
         style={{
           marginTop: 8,
           paddingTop: 8,
-          borderTop: "1px solid #1C1C20",
-          color: "#444444",
+          borderTop: "1px solid var(--ct-tooltip-border)",
+          color: "var(--ct-fg-6)",
           fontFamily: "var(--font-mono), monospace",
           fontSize: 10,
           lineHeight: "12px",
@@ -553,7 +553,7 @@ function HeaderRow({ left, right }: { left: string; right: string }) {
     >
       <div
         style={{
-          color: "#CCCCCC",
+          color: "var(--ct-fg-2)",
           fontFamily: "var(--font-mono), monospace",
           fontSize: 11,
           lineHeight: "14px",
@@ -563,7 +563,7 @@ function HeaderRow({ left, right }: { left: string; right: string }) {
       </div>
       <div
         style={{
-          color: "#888888",
+          color: "var(--ct-fg-3)",
           fontFamily: "var(--font-mono), monospace",
           fontSize: 11,
           lineHeight: "14px",
@@ -596,7 +596,7 @@ function ProjectLine({ p, count }: { p: ProjectKey; count: number }) {
         />
         <div
           style={{
-            color: "#E5E5E5",
+            color: "var(--ct-fg-2)",
             fontFamily: "var(--font-mono), monospace",
             fontSize: 11,
             lineHeight: "14px",
@@ -607,7 +607,7 @@ function ProjectLine({ p, count }: { p: ProjectKey; count: number }) {
       </div>
       <div
         style={{
-          color: "#888888",
+          color: "var(--ct-fg-3)",
           fontFamily: "var(--font-mono), monospace",
           fontSize: 11,
           lineHeight: "14px",
@@ -673,7 +673,7 @@ function CombinedTooltipBody({ cell }: { cell: CellInfo }) {
             >
               <div
                 style={{
-                  color: "#666666",
+                  color: "var(--ct-fg-5)",
                   fontFamily: "var(--font-mono), monospace",
                   fontSize: 10,
                   lineHeight: "12px",
@@ -791,8 +791,8 @@ function GraphCardMobile() {
         maxWidth: 312,
         marginInline: "auto",
         boxSizing: "border-box",
-        backgroundColor: "#0A0A0A",
-        border: "1px solid #1A1A1A",
+        backgroundColor: "var(--ct-surface)",
+        border: "1px solid var(--ct-border)",
         borderRadius: 12,
         padding: 18,
         display: "flex",
@@ -811,7 +811,7 @@ function GraphCardMobile() {
       >
         <div
           style={{
-            color: "#FFFFFF",
+            color: "var(--ct-fg)",
             fontSize: 14,
             fontWeight: 600,
             lineHeight: "17px",
@@ -821,7 +821,7 @@ function GraphCardMobile() {
         </div>
         <div
           style={{
-            color: "#555555",
+            color: "var(--ct-fg-4)",
             fontFamily: "var(--font-mono), monospace",
             fontSize: 11,
             lineHeight: "14px",
@@ -850,12 +850,12 @@ function GraphCardMobile() {
               style={{
                 all: "unset",
                 cursor: "pointer",
-                backgroundColor: active ? "#FFFFFF" : "transparent",
-                border: active ? "none" : "1px solid #1A1A1A",
+                backgroundColor: active ? "var(--ct-pill-active-bg)" : "transparent",
+                border: active ? "none" : "1px solid var(--ct-border)",
                 borderRadius: 6,
                 paddingBlock: active ? 7 : 6,
                 paddingInline: 12,
-                color: active ? "#000000" : "#666666",
+                color: active ? "var(--ct-pill-active-fg)" : "var(--ct-fg-5)",
                 fontSize: 11,
                 fontWeight: active ? 700 : 500,
                 lineHeight: "13px",
@@ -888,7 +888,7 @@ function GraphCardMobile() {
               style={{
                 width: 14,
                 textAlign: "center",
-                color: i === 0 ? "#888888" : "#666666",
+                color: i === 0 ? "var(--ct-fg-3)" : "var(--ct-fg-5)",
                 fontFamily: "var(--font-mono), monospace",
                 fontSize: 8,
                 lineHeight: "10px",
@@ -910,7 +910,7 @@ function GraphCardMobile() {
             const y = cell.weekRow * 17;
             const isEmpty = cell.total === 0;
             const fill = isEmpty
-              ? "#141414"
+              ? "var(--ct-grid-empty)"
               : PROJECT_COLORS[cell.dominant as ProjectKey];
             const opacity = cellOpacity(cell.total);
             const clickable = !isEmpty;
@@ -943,7 +943,7 @@ function GraphCardMobile() {
           flexWrap: "wrap",
           width: 276,
           gap: "10px 14px",
-          borderTop: "1px solid #1A1A1A",
+          borderTop: "1px solid var(--ct-border)",
           paddingTop: 14,
         }}
       >
@@ -970,7 +970,7 @@ function GraphCardMobile() {
             />
             <div
               style={{
-                color: "#CCCCCC",
+                color: "var(--ct-fg-2)",
                 fontSize: 11,
                 fontWeight: 500,
                 lineHeight: "13px",

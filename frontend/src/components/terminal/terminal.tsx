@@ -17,8 +17,6 @@ const TAB_ORDER: readonly TabKey[] = [
 type Theme = {
   accent: string;
   activeBg: string;
-  activeBadgeBg: string;
-  activeBadgeBorder: string;
   inactiveDot: string;
   host: string;
   domain: string;
@@ -28,70 +26,58 @@ type Theme = {
 
 const THEMES: Record<TabKey, Theme> = {
   maxilar: {
-    accent: "#22D3EE",
-    activeBg: "#0F1A1C",
-    activeBadgeBg: "#0A0A0A",
-    activeBadgeBorder: "#1A3A38",
-    inactiveDot: "#1F4044",
+    accent: "var(--ct-cyan)",
+    activeBg: "var(--ct-tab-maxilar)",
+    inactiveDot: "var(--ct-dot-maxilar)",
     host: "catafract@maxilar",
     domain: "catafract.com",
     commits: COMMIT_BY_PROJECT.maxilar,
-    status: { label: "● shipped", color: "#4EC86C" },
+    status: { label: "● shipped", color: "var(--ct-green)" },
   },
   pulso: {
-    accent: "#F472B6",
-    activeBg: "#1F1018",
-    activeBadgeBg: "#0F0610",
-    activeBadgeBorder: "#5C1F3E",
-    inactiveDot: "#5C1F3E",
+    accent: "var(--ct-pink)",
+    activeBg: "var(--ct-tab-pulso)",
+    inactiveDot: "var(--ct-dot-pulso)",
     host: "catafract@pulso",
     domain: "pulsosalud.com",
     commits: COMMIT_BY_PROJECT.pulso,
-    status: { label: "● live", color: "#F472B6" },
+    status: { label: "● live", color: "var(--ct-pink)" },
   },
   syntax: {
-    accent: "#A78BFA",
-    activeBg: "#15122A",
-    activeBadgeBg: "#0A0820",
-    activeBadgeBorder: "#2E2458",
-    inactiveDot: "#3D2F5C",
+    accent: "var(--ct-violet)",
+    activeBg: "var(--ct-tab-syntax)",
+    inactiveDot: "var(--ct-dot-syntax)",
     host: "catafract@syntax",
     domain: "syntax.catafract.com",
     commits: COMMIT_BY_PROJECT.syntax,
-    status: { label: "● in stores", color: "#A78BFA" },
+    status: { label: "● in stores", color: "var(--ct-violet)" },
   },
   inmoba: {
-    accent: "#F59E0B",
-    activeBg: "#1F1708",
-    activeBadgeBg: "#0A0700",
-    activeBadgeBorder: "#5C4316",
-    inactiveDot: "#5C4316",
+    accent: "var(--ct-amber)",
+    activeBg: "var(--ct-tab-inmoba)",
+    inactiveDot: "var(--ct-dot-inmoba)",
     host: "catafract@inmoba",
     domain: "inmoba.app",
     commits: COMMIT_BY_PROJECT.inmoba,
-    status: { label: "● live", color: "#F59E0B" },
+    status: { label: "● live", color: "var(--ct-amber)" },
   },
   damelo: {
-    accent: "#A3A3A3",
-    activeBg: "#161618",
-    activeBadgeBg: "#0A0A0B",
-    activeBadgeBorder: "#333336",
-    inactiveDot: "#333336",
+    accent: "var(--ct-gray)",
+    activeBg: "var(--ct-tab-damelo)",
+    inactiveDot: "var(--ct-dot-damelo)",
     host: "catafract@d.sh",
     domain: "damelo.sh",
     commits: COMMIT_BY_PROJECT.damelo,
-    status: { label: "● open source", color: "#A3A3A3" },
+    status: { label: "● open source", color: "var(--ct-gray)" },
   },
   doctoc: {
-    accent: "#4EC86C",
-    activeBg: "#0E1B12",
-    activeBadgeBg: "#050A07",
-    activeBadgeBorder: "#1C3A22",
-    inactiveDot: "#1F3A28",
+    accent: "var(--ct-green)",
+    activeBg: "var(--ct-tab-doctoc)",
+    inactiveDot: "var(--ct-dot-doctoc)",
     host: "catafract@doctoc",
     domain: "doctoc.health",
     commits: COMMIT_BY_PROJECT.doctoc,
-    status: { label: "● fhir r4", color: "#4EC86C" },
+    status: { label: "● fhir r4", color: "var(--ct-green)" },
   },
 };
 
@@ -236,10 +222,10 @@ function Prompt({ cmd, theme }: { cmd: string; theme: Theme }) {
       >
         {theme.host}
       </span>
-      <span style={{ ...mono, color: "#555555", fontSize: 13, lineHeight: "16px" }}>
+      <span style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 13, lineHeight: "16px" }}>
         :~ $
       </span>
-      <span style={{ ...mono, color: "#FFFFFF", fontSize: 13, lineHeight: "16px" }}>
+      <span style={{ ...mono, color: "var(--ct-fg)", fontSize: 13, lineHeight: "16px" }}>
         {displayed}
         {!done && (
           <span
@@ -274,7 +260,7 @@ function Cursor({ theme }: { theme: Theme }) {
       >
         {theme.host}
       </span>
-      <span style={{ ...mono, color: "#555555", fontSize: 13, lineHeight: "16px" }}>
+      <span style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 13, lineHeight: "16px" }}>
         :~ $
       </span>
       <div style={{ width: 8, height: 16, backgroundColor: theme.accent }} />
@@ -295,7 +281,7 @@ function MetaItem({
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <span
         className="catafract-terminal-meta-key"
-        style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+        style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
       >
         {k}
       </span>
@@ -303,7 +289,7 @@ function MetaItem({
         className="catafract-terminal-meta-val"
         style={{
           ...mono,
-          color: color ?? "#CCCCCC",
+          color: color ?? "var(--ct-fg-2)",
           fontSize: 12,
           fontWeight: 600,
           lineHeight: "16px",
@@ -319,7 +305,7 @@ function Pipe() {
   return (
     <span
       className="catafract-terminal-meta-pipe"
-      style={{ ...mono, color: "#1A1A1A", fontSize: 12, lineHeight: "16px" }}
+      style={{ ...mono, color: "var(--ct-border)", fontSize: 12, lineHeight: "16px" }}
     >
       |
     </span>
@@ -392,7 +378,7 @@ function GitLog({
               className="catafract-terminal-gitlog-msg"
               style={{
                 ...mono,
-                color: "#CCCCCC",
+                color: "var(--ct-fg-2)",
                 fontSize: 12,
                 lineHeight: "16px",
               }}
@@ -414,7 +400,7 @@ function FooterRow({ theme }: { theme: Theme }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        borderTop: "1px solid #1A1A1A",
+        borderTop: "1px solid var(--ct-border)",
         marginTop: 16,
         paddingTop: 16,
       }}
@@ -436,7 +422,7 @@ function FooterRow({ theme }: { theme: Theme }) {
           {theme.domain}
         </a>
         <span
-          style={{ ...mono, color: "#333333", fontSize: 12, lineHeight: "16px" }}
+          style={{ ...mono, color: "var(--ct-fg-6)", fontSize: 12, lineHeight: "16px" }}
         >
           ↗
         </span>
@@ -444,7 +430,7 @@ function FooterRow({ theme }: { theme: Theme }) {
       <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
         <span
           className="catafract-terminal-footer-commits"
-          style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+          style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
         >
           {theme.commits} commits
         </span>
@@ -485,10 +471,10 @@ function TabButton({
         display: "flex",
         alignItems: "center",
         gap: 10,
-        backgroundColor: active ? theme.activeBg : "#0A0A0A",
+        backgroundColor: active ? theme.activeBg : "var(--ct-surface)",
         border: active
           ? `1.5px solid ${theme.accent}`
-          : "1px solid #1A1A1A",
+          : "1px solid var(--ct-border)",
         borderRadius: 8,
         paddingBlock: 10,
         paddingInline: 16,
@@ -509,7 +495,7 @@ function TabButton({
         className="catafract-terminal-tab-label"
         style={{
           ...mono,
-          color: active ? "#FFFFFF" : "#888888",
+          color: active ? "var(--ct-fg)" : "var(--ct-fg-3)",
           fontSize: 12,
           fontWeight: active ? 700 : 600,
           lineHeight: "16px",
@@ -535,8 +521,8 @@ function TabBar({
         display: "flex",
         alignItems: "center",
         gap: 10,
-        backgroundColor: "#050505",
-        borderBottom: "1px solid #1A1A1A",
+        backgroundColor: "var(--ct-surface-subtle)",
+        borderBottom: "1px solid var(--ct-border)",
         paddingBlock: 14,
         paddingInline: 16,
       }}
@@ -548,7 +534,7 @@ function TabBar({
           alignItems: "center",
           gap: 6,
           height: 20,
-          borderRight: "1px solid #1A1A1A",
+          borderRight: "1px solid var(--ct-border)",
           marginRight: 2,
           paddingRight: 14,
           flexShrink: 0,
@@ -618,7 +604,7 @@ function TabBar({
       />
       <span
         className="catafract-terminal-tabbar-tail"
-        style={{ ...mono, color: "#1A1A1A", fontSize: 11, lineHeight: "14px" }}
+        style={{ ...mono, color: "var(--ct-border)", fontSize: 11, lineHeight: "14px" }}
       >
         |
       </span>
@@ -634,7 +620,7 @@ function Heading({ children }: { children: ReactNode }) {
       className="catafract-terminal-title"
       style={{
         margin: 0,
-        color: "#FFFFFF",
+        color: "var(--ct-fg)",
         fontSize: 36,
         fontWeight: 700,
         letterSpacing: "-1px",
@@ -670,7 +656,7 @@ function Description({ children }: { children: ReactNode }) {
       className="catafract-terminal-desc"
       style={{
         margin: 0,
-        color: "#888888",
+        color: "var(--ct-fg-3)",
         fontSize: 16,
         lineHeight: 1.6,
         maxWidth: 720,
@@ -731,9 +717,9 @@ function MaxilarContent({
         <Metadata>
           <MetaItem k="role" v="co-founder · ceo" />
           <Pipe />
-          <MetaItem k="award" v="startup peru winner" color="#4EC86C" />
+          <MetaItem k="award" v="startup peru winner" color="var(--ct-green)" />
           <Pipe />
-          <MetaItem k="exit" v="acquired by doctoc" color="#4EC86C" />
+          <MetaItem k="exit" v="acquired by doctoc" color="var(--ct-green)" />
           <Pipe />
           <MetaItem k="dates" v="jan 2025 — jan 2026" />
         </Metadata>
@@ -810,7 +796,7 @@ function MaxilarContent({
           >
             <span
               className="catafract-terminal-gallery-meta"
-              style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+              style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
             >
               3 files · 1.2mb · rendered in 0.02s
             </span>
@@ -860,9 +846,9 @@ function PulsoContent() {
         <Metadata>
           <MetaItem k="role" v="head of ai" />
           <Pipe />
-          <MetaItem k="scope" v="new frontend · db · mcps" color="#F472B6" />
+          <MetaItem k="scope" v="new frontend · db · mcps" color="var(--ct-pink)" />
           <Pipe />
-          <MetaItem k="status" v="live · shipping" color="#F472B6" />
+          <MetaItem k="status" v="live · shipping" color="var(--ct-pink)" />
           <Pipe />
           <MetaItem k="dates" v="jan 2026 — now" />
         </Metadata>
@@ -919,7 +905,7 @@ function PulsoContent() {
                 className="catafract-terminal-gallery-meta"
                 style={{
                   ...mono,
-                  color: "#555555",
+                  color: "var(--ct-fg-4)",
                   fontSize: 11,
                   lineHeight: "14px",
                 }}
@@ -989,7 +975,7 @@ function SyntaxContent({
         <Metadata>
           <MetaItem k="role" v="co-founder" />
           <Pipe />
-          <MetaItem k="raised" v="$125k" color="#A78BFA" />
+          <MetaItem k="raised" v="$125k" color="var(--ct-violet)" />
           <Pipe />
           <MetaItem k="funding" v="vc backed · pe · cl · ch" />
           <Pipe />
@@ -1068,7 +1054,7 @@ function SyntaxContent({
           >
             <span
               className="catafract-terminal-gallery-meta"
-              style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+              style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
             >
               5 files · 3.9mb · rendered in 0.03s
             </span>
@@ -1135,7 +1121,7 @@ function InmobaContent({
           <Pipe />
           <MetaItem k="focus" v="tasación · 60s" />
           <Pipe />
-          <MetaItem k="status" v="live · shipping" color="#F59E0B" />
+          <MetaItem k="status" v="live · shipping" color="var(--ct-amber)" />
           <Pipe />
           <MetaItem k="dates" v="feb 2026 — now" />
         </Metadata>
@@ -1213,7 +1199,7 @@ function InmobaContent({
           >
             <span
               className="catafract-terminal-gallery-meta"
-              style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+              style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
             >
               4 files · 0.5mb · rendered in 0.02s
             </span>
@@ -1279,7 +1265,7 @@ function DameloContent({
           <Pipe />
           <MetaItem k="stack" v="mcp · claude code" />
           <Pipe />
-          <MetaItem k="status" v="open source · live" color="#A3A3A3" />
+          <MetaItem k="status" v="open source · live" color="var(--ct-gray)" />
           <Pipe />
           <MetaItem k="dates" v="mar 2026 — now" />
         </Metadata>
@@ -1357,7 +1343,7 @@ function DameloContent({
           >
             <span
               className="catafract-terminal-gallery-meta"
-              style={{ ...mono, color: "#555555", fontSize: 11, lineHeight: "14px" }}
+              style={{ ...mono, color: "var(--ct-fg-4)", fontSize: 11, lineHeight: "14px" }}
             >
               2 files · 0.2mb · rendered in 0.02s
             </span>
@@ -1408,9 +1394,9 @@ function DoctocContent() {
         <Metadata>
           <MetaItem k="role" v="builders · post-exit" />
           <Pipe />
-          <MetaItem k="scope" v="hl7 fhir r4" color="#4EC86C" />
+          <MetaItem k="scope" v="hl7 fhir r4" color="var(--ct-green)" />
           <Pipe />
-          <MetaItem k="status" v="live · compliant" color="#4EC86C" />
+          <MetaItem k="status" v="live · compliant" color="var(--ct-green)" />
           <Pipe />
           <MetaItem k="dates" v="feb 2026 — now" />
         </Metadata>
@@ -1464,7 +1450,7 @@ function DoctocContent() {
                 className="catafract-terminal-gallery-meta"
                 style={{
                   ...mono,
-                  color: "#555555",
+                  color: "var(--ct-fg-4)",
                   fontSize: 11,
                   lineHeight: "14px",
                 }}
@@ -1570,8 +1556,8 @@ function ImageModal({
             </span>
             {size && (
               <>
-                <span style={{ color: "#333333", flexShrink: 0 }}>·</span>
-                <span style={{ color: "#555555", flexShrink: 0 }}>{size}</span>
+                <span style={{ color: "var(--ct-fg-6)", flexShrink: 0 }}>·</span>
+                <span style={{ color: "var(--ct-fg-4)", flexShrink: 0 }}>{size}</span>
               </>
             )}
           </div>
@@ -1663,8 +1649,8 @@ export function Terminal() {
         className="catafract-terminal-root"
         style={{
           width: "100%",
-          backgroundColor: "#0A0A0A",
-          border: "1px solid #1A1A1A",
+          backgroundColor: "var(--ct-surface)",
+          border: "1px solid var(--ct-border)",
           borderRadius: 12,
           overflow: "hidden",
           boxSizing: "border-box",

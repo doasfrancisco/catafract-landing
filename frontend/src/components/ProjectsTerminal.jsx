@@ -3,10 +3,12 @@ import { Terminal } from './terminal/terminal'
 import { GraphCard } from './terminal/graph-card'
 
 /**
- * Dark terminal + GitHub-style contributions graph, ported from the
- * Catafract landing (landing/). Replaces the old DashboardMockup as the
- * hero showcase. Always dark — it reads as an intentional terminal panel
- * in both light and dark site themes.
+ * Terminal + GitHub-style contributions graph, ported from the Catafract
+ * landing (landing/). Replaces the old DashboardMockup as the hero showcase.
+ * Themed: a Notepad++-style white editor + GitHub-light graph in light mode,
+ * the original dark terminal in dark mode. Both follow the site's light/dark
+ * toggle via the `--ct-*` CSS variables defined in index.css (the inline
+ * styles in terminal/*.tsx reference those vars, so they flip with html.dark).
  */
 export default function ProjectsTerminal() {
   return (
