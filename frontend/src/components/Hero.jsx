@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Play, Rocket, Sparkles, Wrench, Zap } from 'lucide-react'
 import Container from './Container.jsx'
-import DashboardMockup from './DashboardMockup.jsx'
+import ProjectsTerminal from './ProjectsTerminal.jsx'
 
 const badges = [
   { icon: Rocket, label: 'Ex founders' },
@@ -114,7 +114,7 @@ export default function Hero() {
         </div>
 
         <div className="relative mt-16 sm:mt-20 lg:mt-24">
-          <DashboardMockup />
+          <ProjectsTerminal />
         </div>
       </Container>
     </section>

@@ -12,7 +12,7 @@ import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-ink-50 text-ink-900 selection:bg-accent-500/40 dark:bg-ink-950 dark:text-ink-100">
+    <div className="relative min-h-screen overflow-x-clip bg-ink-50 text-ink-900 selection:bg-accent-500/40 dark:bg-ink-950 dark:text-ink-100">
       {/* Ambient background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-noise" />

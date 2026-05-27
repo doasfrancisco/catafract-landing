@@ -1,0 +1,13 @@
+# Build output
+dist/
+
+# Dependencies
+node_modules/
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel
