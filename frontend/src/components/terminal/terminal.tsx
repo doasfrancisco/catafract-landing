@@ -633,20 +633,26 @@ function Heading({ children }: { children: ReactNode }) {
   );
 }
 
-function ProjectLogo({ src, alt }: { src: string; alt: string }) {
+function ProjectLogo({ src, lightSrc, alt }: { src: string; lightSrc?: string; alt: string }) {
+  // NB: no `display` here — it lives in CSS so the light/dark toggle
+  // (.catafract-terminal-logo--light/--dark) can override it. An inline
+  // display would win over the stylesheet and show both logos at once.
+  const base: CSSProperties = {
+    width: 120,
+    height: 120,
+    objectFit: "contain",
+    marginTop: 22,
+  };
+  // No light variant: render the single default logo (always shown).
+  if (!lightSrc) {
+    return <img src={src} alt={alt} className="catafract-terminal-logo" style={base} />;
+  }
+  // Light variant present: render both, let CSS toggle on html.dark.
   return (
-    <img
-      src={src}
-      alt={alt}
-      className="catafract-terminal-logo"
-      style={{
-        display: "block",
-        width: 120,
-        height: 120,
-        objectFit: "contain",
-        marginTop: 22,
-      }}
-    />
+    <>
+      <img src={lightSrc} alt={alt} className="catafract-terminal-logo catafract-terminal-logo--light" style={base} />
+      <img src={src} alt={alt} className="catafract-terminal-logo catafract-terminal-logo--dark" style={base} />
+    </>
   );
 }
 
@@ -705,7 +711,7 @@ function MaxilarContent({
           visibility: progress >= 1 ? "visible" : "hidden",
         }}
       >
-        <ProjectLogo src="/maxilar-logo.png" alt="Maxilar" />
+        <ProjectLogo src="/maxilar-logo.png" lightSrc="/maxilar-logo_light.png" alt="Maxilar" />
         <Heading>AI agents for cool dentists.</Heading>
         <Description>
           Maxilar built AI agents that sit inside dental practices — handling
@@ -963,7 +969,7 @@ function SyntaxContent({
           visibility: progress >= 1 ? "visible" : "hidden",
         }}
       >
-        <ProjectLogo src="/syntax-logo.png" alt="Syntax" />
+        <ProjectLogo src="/syntax-logo.png" lightSrc="/syntax-logo_light.png" alt="Syntax" />
         <Heading>English fluency from your phone.</Heading>
         <Description>
           Syntax is an AI English tutor for speakers of Spanish. Pick a topic,
@@ -1250,7 +1256,7 @@ function DameloContent({
           visibility: progress >= 1 ? "visible" : "hidden",
         }}
       >
-        <ProjectLogo src="/damelo-logo.png" alt="Damelo" />
+        <ProjectLogo src="/damelo-logo.png" lightSrc="/damelo-logo_light.png" alt="Damelo" />
         <Heading>Share your AI sessions with your team.</Heading>
         <Description>
           Damelo is an MCP server that exports, imports, and browses Claude Code
@@ -1381,7 +1387,7 @@ function DoctocContent() {
           visibility: progress >= 1 ? "visible" : "hidden",
         }}
       >
-        <ProjectLogo src="/doctoc-logo.png" alt="Doctoc" />
+        <ProjectLogo src="/doctoc-logo.png" lightSrc="/doctoc-logo_light.png" alt="Doctoc" />
         <Heading>HL7 FHIR compliance for Latin American EHRs.</Heading>
         <Description>
           After Maxilar was acquired, the same team rebuilt Doctoc&apos;s clinical

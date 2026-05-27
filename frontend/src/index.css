@@ -139,6 +139,25 @@ html.dark {
   color: #ececef;
 }
 
+/* Per-project logos that ship a *_light.png variant: show the light logo
+ * in the site's light theme, the default (dark) logo under html.dark.
+ * Logos without a light variant render a single img with neither class. */
+.catafract-terminal-logo {
+  display: block;
+}
+.catafract-terminal-logo--dark {
+  display: none;
+}
+.catafract-terminal-logo--light {
+  display: block;
+}
+html.dark .catafract-terminal-logo--light {
+  display: none;
+}
+html.dark .catafract-terminal-logo--dark {
+  display: block;
+}
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
