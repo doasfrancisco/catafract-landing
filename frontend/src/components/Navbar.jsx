@@ -4,10 +4,10 @@ import Logo from './Logo.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 
 const links = [
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Proceso', href: '#proceso' },
-  { label: 'Tecnologías', href: '#tecnologias' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Proyectos', href: '/#proyectos' },
+  { label: 'Proceso', href: '/#proceso' },
+  { label: 'Tecnologías', href: '/#tecnologias' },
 ]
 
 export default function Navbar() {
@@ -33,7 +33,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-        <a href="#" className="flex items-center gap-2.5">
+        <a href="/" className="flex items-center gap-2.5">
           <Logo className="h-7 w-7" />
           <span className="font-display text-base font-semibold tracking-tight text-ink-900 dark:text-white">
             Catafract
@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
           <a
-            href="#contacto"
+            href="/#contacto"
             className="group inline-flex items-center gap-2 rounded-lg bg-ink-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-ink-700 dark:bg-white dark:text-ink-950 dark:hover:bg-ink-100"
           >
             Agenda una llamada
@@ -118,7 +118,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#contacto"
+                href="/#contacto"
                 onClick={() => setOpen(false)}
                 className="mt-2 inline-flex items-center justify-center rounded-lg bg-ink-900 px-4 py-3 text-sm font-medium text-white dark:bg-white dark:text-ink-950"
               >
