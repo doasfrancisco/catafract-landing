@@ -1,6 +1,6 @@
 import { Linkedin, Mail, MessageCircle } from 'lucide-react'
 import Container from './Container.jsx'
-import Logo from './Logo.jsx'
+import Wordmark from './Wordmark.jsx'
 
 const WHATSAPP_URL = 'https://wa.me/51960400734'
 
@@ -37,11 +37,8 @@ export default function Footer() {
       <Container>
         <div className="grid grid-cols-1 gap-12 pb-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="/" className="flex items-center gap-2.5">
-              <Logo className="h-7 w-7" />
-              <span className="font-display text-base font-semibold text-ink-900 dark:text-white">
-                Catafract
-              </span>
+            <a href="/" className="flex items-center">
+              <Wordmark className="text-lg" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-600 dark:text-ink-400">
               Software factory que construye productos, automatizaciones y

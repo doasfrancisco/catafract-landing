@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Logo from './Logo.jsx'
+import Wordmark from './Wordmark.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 
 const links = [
@@ -33,11 +33,8 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-        <a href="/" className="flex items-center gap-2.5">
-          <Logo className="h-7 w-7" />
-          <span className="font-display text-base font-semibold tracking-tight text-ink-900 dark:text-white">
-            Catafract
-          </span>
+        <a href="/" className="flex items-center">
+          <Wordmark className="text-lg" />
         </a>
 
         <nav className="hidden items-center gap-1 md:flex">

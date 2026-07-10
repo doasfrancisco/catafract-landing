@@ -43,7 +43,7 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
               </span>
-              Aceptando 2 nuevos proyectos en Q2
+              Aceptando 2 nuevos proyectos en Q3
             </span>
             <span className="text-ink-400 dark:text-ink-400">·</span>
             <span className="text-ink-600 dark:text-ink-300">
