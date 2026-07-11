@@ -264,6 +264,28 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   }
 }
 
+/* ------------------------------------------------------------------
+ * Guardia de performance de scroll en móvil (sobre todo iOS Safari).
+ *
+ * `backdrop-filter` y las capas grandes con `filter: blur()` fuerzan un
+ * repintado en CADA frame de scroll en iOS — eso hace que el scroll y las
+ * animaciones de entrada de las cards se sientan lentas / laggeadas.
+ * En un teléfono estos efectos son casi imperceptibles, así que los
+ * apagamos por debajo del breakpoint md. El look de desktop no cambia.
+ * ------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  /* backdrop-blur → sin efecto (los fondos ya son semi-opacos y siguen legibles) */
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  /* blobs de glow decorativos (fondo ambiental + glows de cards): fuera en móvil */
+  .blur-2xl,
+  .blur-3xl {
+    display: none !important;
+  }
+}
+
 /* ============================================================
  * Ported terminal + GitHub-style contributions graph (from landing/).
  *
