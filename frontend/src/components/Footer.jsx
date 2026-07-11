@@ -110,8 +110,8 @@ export default function Footer() {
 
       {/* Big watermark */}
       <div className="pointer-events-none relative mt-4 select-none overflow-hidden">
-        <div className="bg-gradient-to-b from-ink-900/[0.04] to-transparent bg-clip-text text-center font-display text-[18vw] font-bold leading-none tracking-tighter text-transparent dark:from-white/[0.03]">
-          CATAFRACT
+        <div className="bg-gradient-to-b from-ink-900/[0.04] to-transparent bg-clip-text text-center font-display text-[18vw] font-extrabold italic leading-none tracking-tighter text-transparent dark:from-white/[0.03]">
+          CATAFRACT.
         </div>
       </div>
     </footer>
