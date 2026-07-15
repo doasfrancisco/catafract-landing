@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Problems from './components/Problems.jsx'
+import Method from './components/Method.jsx'
 import Services from './components/Services.jsx'
 import UseCases from './components/UseCases.jsx'
 import Differentiation from './components/Differentiation.jsx'
@@ -25,6 +26,7 @@ export default function App() {
       <main>
         <Hero />
         <Problems />
+        <Method />
         <Services />
         <UseCases />
         <Differentiation />

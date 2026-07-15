@@ -13,8 +13,8 @@ import SectionHeader from './SectionHeader.jsx'
 const steps = [
   {
     icon: Compass,
-    title: 'Discovery',
-    desc: 'Entendemos negocio, métricas y operación. Identificamos el problema real.',
+    title: 'Kickoff',
+    desc: 'Alineamos alcance, prioridades y métricas de éxito antes de construir.',
   },
   {
     icon: Map,
@@ -45,13 +45,13 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="proceso" className="relative py-28 sm:py-36">
+    <section id="proceso" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           align="center"
-          eyebrow="Cómo trabajamos"
+          eyebrow="El proceso"
           title="Un proceso transparente, desde idea hasta producción."
-          description="Iteramos rápido, comunicamos claro y mostramos progreso visible cada semana."
+          description="Una vez definido el foco en el diagnóstico, así llevamos la solución de la idea a producción — con progreso visible cada semana."
           maxWidth="max-w-3xl"
         />
 
@@ -70,7 +70,7 @@ export default function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="relative flex flex-col items-start lg:items-center lg:px-3 lg:text-center"
+                className="relative flex flex-col items-center text-center lg:px-3"
               >
                 <div className="relative z-10 flex h-[88px] w-[88px] items-center justify-center">
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white to-ink-100 dark:from-white/[0.06] dark:to-white/[0.02]" />

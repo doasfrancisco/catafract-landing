@@ -63,7 +63,7 @@ const groups = [
 
 export default function Services() {
   return (
-    <section id="servicios" className="relative py-28 sm:py-36">
+    <section id="servicios" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           align="center"
@@ -113,19 +113,6 @@ export default function Services() {
                         {item.label}
                       </span>
                     </div>
-                    <svg
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      className="h-3.5 w-3.5 text-ink-400 transition group-hover/item:translate-x-0.5 group-hover/item:text-ink-700 dark:text-ink-500 dark:group-hover/item:text-ink-200"
-                    >
-                      <path
-                        d="M6 3l5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
                   </li>
                 ))}
               </ul>

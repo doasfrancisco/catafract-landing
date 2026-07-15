@@ -53,7 +53,7 @@ export default function CTA() {
   const update = (k) => (e) => setForm((s) => ({ ...s, [k]: e.target.value }))
 
   return (
-    <section id="contacto" className="relative py-28 sm:py-36">
+    <section id="contacto" className="relative py-20 sm:py-28">
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-ink-200 bg-white p-8 backdrop-blur-xl dark:border-white/10 dark:bg-ink-900/50 sm:p-12 lg:p-16">
           {/* Background effects */}

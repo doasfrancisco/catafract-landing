@@ -34,7 +34,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="relative py-28 sm:py-36">
+    <section className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           align="center"

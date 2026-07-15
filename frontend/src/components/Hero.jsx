@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Play, Rocket, Sparkles, Wrench, Zap } from 'lucide-react'
+import { ArrowRight, Rocket, Sparkles, Wrench, Zap } from 'lucide-react'
 import Container from './Container.jsx'
-import ProjectsTerminal from './ProjectsTerminal.jsx'
+import AbstractHero from './AbstractHero.jsx'
 
 const badges = [
   { icon: Rocket, label: 'Ex founders' },
@@ -30,7 +30,16 @@ export default function Hero() {
       </div>
 
       <Container>
-        <div className="flex flex-col items-center text-center">
+        <div className="relative isolate z-10 flex flex-col items-center text-center">
+          {/* Glow difuminado de marca — dos difusos hacia los costados */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-[-56px] -z-10 h-[560px] w-[1040px] max-w-[150%] -translate-x-1/2 rounded-full"
+            style={{
+              background:
+                'radial-gradient(ellipse 42% 56% at 5% 42%, rgba(37,99,235,0.18), transparent 66%), radial-gradient(ellipse 42% 56% at 95% 58%, rgba(124,58,237,0.16), transparent 66%)',
+            }}
+          />
           <motion.a
             href="#contacto"
             initial={{ opacity: 0, y: 8 }}
@@ -45,8 +54,8 @@ export default function Hero() {
               </span>
               Aceptando 2 nuevos proyectos en Q3
             </span>
-            <span className="text-ink-400 dark:text-ink-400">·</span>
-            <span className="text-ink-600 dark:text-ink-300">
+            <span className="hidden text-ink-400 dark:text-ink-400 sm:inline">·</span>
+            <span className="hidden text-ink-600 dark:text-ink-300 sm:inline">
               Hablar con el equipo
               <ArrowRight className="ml-1 inline h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </span>
@@ -58,8 +67,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-6 max-w-5xl text-balance font-display text-[2.6rem] font-semibold leading-[1.04] tracking-tighter text-ink-900 dark:text-white sm:text-6xl lg:text-7xl"
           >
-            Construimos software que ayuda a empresas a{' '}
-            <span className="grad-text-accent">operar, vender y escalar.</span>
+            Implementamos tecnología que ordena y automatiza{' '}
+            <span className="grad-text-accent">tu operación.</span>
           </motion.h1>
 
           <motion.p
@@ -68,9 +77,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-6 max-w-2xl text-balance text-lg leading-relaxed text-ink-600 dark:text-ink-300 sm:text-xl"
           >
-            Producto, automatización e ingeniería en un solo equipo. Diseñamos
-            sistemas internos, CRMs, automatizaciones y plataformas para empresas
-            que quieren crecer más rápido.
+            Reemplazamos el trabajo manual y las herramientas dispersas por
+            sistemas a medida, con automatización e IA.
           </motion.p>
 
           <motion.div
@@ -85,13 +93,6 @@ export default function Hero() {
             >
               Agenda una llamada
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="#proyectos"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-lg border border-ink-200 bg-white/70 px-5 py-3 text-sm font-semibold text-ink-900 backdrop-blur transition hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 sm:w-auto"
-            >
-              <Play className="h-3.5 w-3.5" />
-              Ver proyectos
             </a>
           </motion.div>
 
@@ -114,7 +115,7 @@ export default function Hero() {
         </div>
 
         <div className="relative mt-16 sm:mt-20 lg:mt-24">
-          <ProjectsTerminal />
+          <AbstractHero />
         </div>
       </Container>
     </section>

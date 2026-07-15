@@ -46,11 +46,11 @@ const problems = [
 
 export default function Problems() {
   return (
-    <section className="relative py-28 sm:py-36">
+    <section className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           align="center"
-          eyebrow="Diagnóstico"
+          eyebrow="El problema"
           title={
             <>
               La mayoría de empresas ya no tiene problemas de ventas.{' '}

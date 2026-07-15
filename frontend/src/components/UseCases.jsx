@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Building2, ShoppingCart, Users2 } from 'lucide-react'
 import Container from './Container.jsx'
@@ -55,23 +56,45 @@ const cases = [
 ]
 
 export default function UseCases() {
+  const [active, setActive] = useState(0)
+  const c = cases[active]
+
   return (
-    <section id="proyectos" className="relative py-28 sm:py-36">
+    <section id="proyectos" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           eyebrow="Casos de uso"
-          title="Software construido para resolver problemas reales."
-          description="Una muestra de proyectos representativos. Cada uno parte de un problema operativo concreto y termina en métricas medibles."
+          title="Software a medida para resolver problemas reales."
+          description="Cada proyecto se construye para la operación del cliente — un ejemplo por tipo de sistema, no un producto enlatado."
         />
 
-        <div className="mt-16 flex flex-col gap-6">
-          {cases.map((c, i) => (
+        {/* Tabs — un tipo de sistema por pestaña */}
+        <div className="mt-12 flex flex-wrap justify-center gap-2">
+          {cases.map((t, i) => (
+            <button
+              key={t.industry}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-pressed={active === i}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${
+                active === i
+                  ? 'border-ink-900 bg-ink-900 text-white dark:border-white dark:bg-white dark:text-ink-950'
+                  : 'border-ink-200 bg-white text-ink-600 hover:text-ink-900 dark:border-white/10 dark:bg-white/5 dark:text-ink-300 dark:hover:text-white'
+              }`}
+            >
+              <t.icon className="h-4 w-4" />
+              {t.industry}
+            </button>
+          ))}
+        </div>
+
+        {/* Caso activo — el key re-monta el artículo en cada cambio de pestaña */}
+        <div className="mt-8">
             <motion.article
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, delay: i * 0.05 }}
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
               className="group relative overflow-hidden rounded-3xl border border-ink-200 bg-white backdrop-blur dark:border-white/10 dark:bg-ink-900/40"
             >
               <div
@@ -129,7 +152,6 @@ export default function UseCases() {
                 </div>
               </div>
             </motion.article>
-          ))}
         </div>
 
         <div className="mt-12 flex justify-center">
@@ -189,7 +211,7 @@ function RealEstateMock() {
   ]
   return (
     <MockShell title="crm.realestate">
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {stages.map((s) => (
           <div
             key={s.name}

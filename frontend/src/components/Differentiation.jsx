@@ -19,7 +19,7 @@ const us = [
 
 export default function Differentiation() {
   return (
-    <section className="relative py-28 sm:py-36">
+    <section className="relative py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
           <SectionHeader
@@ -29,7 +29,7 @@ export default function Differentiation() {
                 No solo escribimos <span className="grad-text-accent">código.</span>
               </>
             }
-            description="Combinamos experiencia técnica, producto y negocio. Hemos construido startups, trabajado con equipos de alto crecimiento y diseñado software pensando en operación, métricas y escalabilidad."
+            description="No se trata de escribir código, sino de construir lo correcto. Así nos comparamos con una software factory tradicional:"
             maxWidth="max-w-xl"
           />
 

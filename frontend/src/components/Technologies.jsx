@@ -15,7 +15,7 @@ const techs = [
 
 export default function Technologies() {
   return (
-    <section id="tecnologias" className="relative py-28 sm:py-36">
+    <section id="tecnologias" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeader
           align="center"
