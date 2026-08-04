@@ -38,7 +38,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-border bg-background/75 backdrop-blur-xl backdrop-saturate-150"
+          ? "border-b border-border bg-background/90 md:bg-background/75 md:backdrop-blur-xl md:backdrop-saturate-150"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -87,7 +87,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
+            className="border-b border-border bg-background/95 md:hidden"
           >
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (

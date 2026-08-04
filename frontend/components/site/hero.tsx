@@ -72,7 +72,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden bg-white px-6 pb-24 pt-28 md:pb-28"
+      className="relative isolate flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-white px-6 pb-24 pt-28 md:pb-28"
     >
       <HeroAmbient reduce={reduce} />
 

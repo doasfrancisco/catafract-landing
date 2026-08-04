@@ -11,6 +11,16 @@ import {
 // Signature ease — a calm, expensive-feeling ease-out.
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
 
+/**
+ * Once a blur-in animation finishes, strip the inline `filter` so no
+ * `blur(0px)` layer lingers. A resting `filter` (even blur(0)) keeps the
+ * element on its own GPU layer and janks scrolling on mobile — clearing it
+ * keeps the entrance effect while leaving a cheap, filter-free resting state.
+ */
+function clearFilter(el: HTMLElement | null) {
+  if (el) el.style.filter = "";
+}
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -24,7 +34,9 @@ type RevealProps = {
 } & Omit<HTMLMotionProps<"div">, "children" | "ref">;
 
 /**
- * Fade-up + subtle blur-in as the element scrolls into view.
+ * Fade-up + subtle blur-in as the element scrolls into view. The blur is
+ * removed from the inline style once the animation settles (see clearFilter),
+ * so the effect plays on every device without leaving a scroll-janking layer.
  * Honors prefers-reduced-motion by rendering statically.
  */
 export function Reveal({
@@ -37,6 +49,7 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const reduce = useReducedMotion();
+  const ref = React.useRef<HTMLDivElement>(null);
   const MotionTag = motion[as] as typeof motion.div;
 
   if (reduce) {
@@ -49,11 +62,13 @@ export function Reveal({
 
   return (
     <MotionTag
+      ref={ref}
       className={className}
       initial={{ opacity: 0, y, filter: "blur(6px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once, margin: "-80px" }}
       transition={{ duration: 0.7, ease: EASE, delay }}
+      onAnimationComplete={() => clearFilter(ref.current)}
       {...rest}
     >
       {children}
@@ -112,10 +127,16 @@ export function StaggerItem({
   className?: string;
 }) {
   const reduce = useReducedMotion();
+  const ref = React.useRef<HTMLDivElement>(null);
   if (reduce) return <div className={className}>{children}</div>;
 
   return (
-    <motion.div className={className} variants={itemVariants}>
+    <motion.div
+      ref={ref}
+      className={className}
+      variants={itemVariants}
+      onAnimationComplete={() => clearFilter(ref.current)}
+    >
       {children}
     </motion.div>
   );
