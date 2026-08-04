@@ -91,12 +91,11 @@ export function Navbar() {
             }}
             exit={{
               opacity: 0,
-              y: -8,
-              // Cierre con ease-in (acelera y termina seco) para que no quede
-              // la cola lenta que hacía sentir el menú "demorado" al cerrar.
-              transition: { duration: 0.16, ease: [0.4, 0, 1, 1] },
+              // Cierre: fundido puro (sin desplazamiento, para que nada se
+              // deslice bajo la barra de vidrio) y rápido con ease-in.
+              transition: { duration: 0.13, ease: [0.4, 0, 1, 1] },
             }}
-            className="border-b border-border bg-background/95 md:hidden"
+            className="border-b border-border bg-background md:hidden"
           >
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
