@@ -24,7 +24,10 @@ export function BrandLogo({
       <img
         src={src}
         alt={name}
-        loading="lazy"
+        // Eager, not lazy: the marquee renders a second (off-screen) copy of the
+        // logos; if those stay unloaded they collapse to ~0 width and the
+        // -50% seamless loop misaligns (visible jump/gap). These logos are tiny.
+        loading="eager"
         className={cn(
           "h-7 w-auto shrink-0 object-contain opacity-60 grayscale transition-opacity duration-300 hover:opacity-100",
           className,

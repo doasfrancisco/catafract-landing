@@ -41,7 +41,7 @@ export function EcosystemBand() {
         <div className="mx-auto mt-8 w-full max-w-6xl px-6 md:px-8">
           {/* Continuous marquee — pauses on hover, hidden under reduced motion. */}
           <div className="group relative overflow-hidden [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] motion-reduce:hidden">
-            <div className="flex w-max [animation:marquee_36s_linear_infinite] group-hover:[animation-play-state:paused]">
+            <div className="flex w-max will-change-transform [animation:marquee_28s_linear_infinite] group-hover:[animation-play-state:paused]">
               <LogoSet />
               <LogoSet ariaHidden />
             </div>

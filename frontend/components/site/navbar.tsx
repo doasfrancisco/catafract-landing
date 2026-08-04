@@ -17,6 +17,10 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  // True while the menu is open AND during its close animation, so we can drop
+  // the navbar's backdrop-blur meanwhile: recomputing that blur every frame
+  // during the roll-up made the close feel heavier once the glass bar showed.
+  const [menuActive, setMenuActive] = React.useState(false);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -38,7 +42,9 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-border bg-background/75 backdrop-blur-xl backdrop-saturate-150"
+          ? menuActive
+            ? "border-b border-border bg-background"
+            : "border-b border-border bg-background/75 backdrop-blur-xl backdrop-saturate-150"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -72,14 +78,21 @@ export function Navbar() {
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => {
+            if (open) {
+              setOpen(false);
+            } else {
+              setMenuActive(true);
+              setOpen(true);
+            }
+          }}
           className="inline-flex size-10 items-center justify-center rounded-full text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/60 md:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={() => setMenuActive(false)}>
         {open && (
           <motion.div
             key="mobile-menu"
