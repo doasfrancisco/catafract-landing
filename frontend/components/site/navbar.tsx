@@ -87,7 +87,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
+            className="border-b border-border bg-background/95 md:hidden"
           >
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
