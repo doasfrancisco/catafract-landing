@@ -83,19 +83,20 @@ export function Navbar() {
         {open && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
+            // Roll-up: el panel crece/colapsa en ALTURA (se recoge hacia la
+            // barra, como una persiana) en vez de desvanecerse. Fundir un panel
+            // blanco sobre contenido blanco dejaba un "hueco blanco" al cerrar;
+            // recogerlo en altura revela el contenido de atrás de forma limpia.
+            initial={{ height: 0 }}
             animate={{
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] },
+              height: "auto",
+              transition: { duration: 0.26, ease: [0.22, 0.61, 0.36, 1] },
             }}
             exit={{
-              opacity: 0,
-              // Cierre: fundido puro (sin desplazamiento, para que nada se
-              // deslice bajo la barra de vidrio) y rápido con ease-in.
-              transition: { duration: 0.13, ease: [0.4, 0, 1, 1] },
+              height: 0,
+              transition: { duration: 0.2, ease: [0.4, 0, 1, 1] },
             }}
-            className="border-b border-border bg-background md:hidden"
+            className="overflow-hidden border-b border-border bg-background md:hidden"
           >
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
