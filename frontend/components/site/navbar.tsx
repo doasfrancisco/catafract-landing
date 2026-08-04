@@ -14,6 +14,19 @@ const NAV_LINKS = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
+/** Jump to an in-page section, offset for the fixed navbar. Works even when the
+ *  URL hash is already that section (native anchors no-op on a repeat click) and
+ *  when the mobile menu had locked body scroll. Instant, so we don't "fly"
+ *  through sections that are still hidden by their scroll-reveal. */
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  document.body.style.overflow = ""; // release the mobile-menu scroll lock first
+  const NAV_OFFSET = 72; // h-16 navbar (64px) + a little air
+  const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET);
+  window.scrollTo({ top, behavior: "auto" });
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -36,6 +49,26 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Own every in-page anchor click so navigation ALWAYS scrolls (browsers no-op
+  // a repeat click to the current hash), closes the mobile menu, and clears the
+  // navbar height — instead of the default that broke on repeats and landed the
+  // heading under the bar.
+  React.useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey) return;
+      const target = e.target as HTMLElement | null;
+      const a = target?.closest?.('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!a) return;
+      const id = a.getAttribute("href")!.slice(1);
+      if (!id || !document.getElementById(id)) return;
+      e.preventDefault();
+      setOpen(false);
+      scrollToSection(id);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
 
   return (
     <header
@@ -126,7 +159,7 @@ export function Navbar() {
                 className="mt-3 w-full"
                 onClick={() => {
                   setOpen(false);
-                  window.location.hash = "#contacto";
+                  scrollToSection("contacto");
                 }}
               >
                 Agendar diagnóstico

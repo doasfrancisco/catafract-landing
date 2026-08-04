@@ -83,7 +83,10 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Anchor navigation is handled in JS (Navbar) with an instant, navbar-
+       offset jump, so we keep native scrolling instant here — a smooth CSS
+       scroll over the whole page flew blankly through not-yet-revealed
+       sections. */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
