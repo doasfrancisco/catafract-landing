@@ -7,6 +7,7 @@ import {
   type HTMLMotionProps,
   type Variants,
 } from "framer-motion";
+import { useIsDesktop } from "@/lib/use-is-desktop";
 
 // Signature ease — a calm, expensive-feeling ease-out.
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
@@ -66,6 +67,7 @@ export function Reveal({
 }: RevealProps) {
   const reduce = useReducedMotion();
   const revealAll = useRevealAll();
+  const desktop = useIsDesktop();
   const ref = React.useRef<HTMLDivElement>(null);
   const MotionTag = motion[as] as typeof motion.div;
 
@@ -77,12 +79,19 @@ export function Reveal({
     );
   }
 
-  const shown = { opacity: 1, y: 0, filter: "blur(0px)" };
+  // Blur-in only on desktop — animating `filter: blur` on every section as it
+  // enters janks scrolling on mobile. Mobile keeps the cheap fade + rise.
+  const hidden = desktop
+    ? { opacity: 0, y, filter: "blur(6px)" }
+    : { opacity: 0, y };
+  const shown = desktop
+    ? { opacity: 1, y: 0, filter: "blur(0px)" }
+    : { opacity: 1, y: 0 };
   return (
     <MotionTag
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(6px)" }}
+      initial={hidden}
       animate={revealAll ? shown : undefined}
       whileInView={revealAll ? undefined : shown}
       viewport={{ once, margin: "-40px" }}
@@ -112,6 +121,16 @@ const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
+    transition: { duration: 0.5, ease: EASE },
+  },
+};
+
+// Mobile variant without the blur filter (see Reveal above for the reason).
+const itemVariantsPlain: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
     transition: { duration: 0.5, ease: EASE },
   },
 };
@@ -152,6 +171,7 @@ export function StaggerItem({
   className?: string;
 }) {
   const reduce = useReducedMotion();
+  const desktop = useIsDesktop();
   const ref = React.useRef<HTMLDivElement>(null);
   if (reduce) return <div className={className}>{children}</div>;
 
@@ -159,7 +179,7 @@ export function StaggerItem({
     <motion.div
       ref={ref}
       className={className}
-      variants={itemVariants}
+      variants={desktop ? itemVariants : itemVariantsPlain}
       onAnimationComplete={() => clearFilter(ref.current)}
     >
       {children}

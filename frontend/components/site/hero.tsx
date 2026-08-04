@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { useIsDesktop } from "@/lib/use-is-desktop";
 
 // A calm, unhurried ease — the whole point of the section is restraint.
 const EASE = [0.22, 0.61, 0.36, 1] as const;
@@ -19,7 +20,7 @@ const item: Variants = {
 
 /** Barely-there ambient: a soft light behind the headline, a faint grid, and
  *  two slow-drifting pools of light. Everything is near-invisible by design. */
-function HeroAmbient({ reduce }: { reduce: boolean | null }) {
+function HeroAmbient({ animate }: { animate: boolean }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       {/* Faint grid, masked to a soft pool around the headline. */}
@@ -39,8 +40,10 @@ function HeroAmbient({ reduce }: { reduce: boolean | null }) {
             "radial-gradient(44% 40% at 50% 42%, rgba(15,23,42,0.05), transparent 72%)",
         }}
       />
-      {/* Slow-moving pools of light — a whisper, never a spectacle. */}
-      {!reduce && (
+      {/* Slow-moving pools of light — a whisper, never a spectacle.
+          Desktop only: they sit behind the opaque sky, so on mobile they were
+          pure wasted compute that made scrolling feel laggy. */}
+      {animate && (
         <>
           <motion.div
             className="absolute left-[8%] top-[8%] h-[50vw] w-[50vw] max-h-[660px] max-w-[660px] rounded-full"
@@ -68,13 +71,14 @@ function HeroAmbient({ reduce }: { reduce: boolean | null }) {
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const desktop = useIsDesktop();
 
   return (
     <section
       id="top"
       className="relative isolate flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-white px-6 pb-24 pt-28 md:pb-28"
     >
-      <HeroAmbient reduce={reduce} />
+      <HeroAmbient animate={!reduce && desktop} />
 
       {/* Cielo de fondo con un zoom lento tipo Ken Burns: una escala que
           "respira" (1 → 1.08 → 1) para que el loop no tenga salto de reinicio.
