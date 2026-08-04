@@ -84,9 +84,18 @@ export function Navbar() {
           <motion.div
             key="mobile-menu"
             initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] },
+            }}
+            exit={{
+              opacity: 0,
+              y: -8,
+              // Cierre con ease-in (acelera y termina seco) para que no quede
+              // la cola lenta que hacía sentir el menú "demorado" al cerrar.
+              transition: { duration: 0.16, ease: [0.4, 0, 1, 1] },
+            }}
             className="border-b border-border bg-background/95 md:hidden"
           >
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
