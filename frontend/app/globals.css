@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Brand tokens — CATAFRACT                                           */
+/*  Semantic values live in :root so a .dark override can swap them.   */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: #f7f6f3;
+  --foreground: #111111;
+
+  --card: #ffffff;
+  --card-foreground: #111111;
+
+  --muted: #f1efea;
+  --muted-foreground: #5e5e5e;
+
+  --border: #e7e7e7;
+  --input: #e7e7e7;
+  --ring: #0f172a;
+
+  --accent: #0f172a;
+  --accent-foreground: #ffffff;
+
+  /* Very subtle blue — used only for the rare highlight. */
+  --highlight: #2563eb;
+
+  --radius: 16px;
+}
+
+/* Dark-mode ready: the palette is authored light, but every surface is
+   token-driven, so flipping these variables themes the whole page. */
+.dark {
+  --background: #0b0b0f;
+  --foreground: #f5f5f4;
+
+  --card: #131318;
+  --card-foreground: #f5f5f4;
+
+  --muted: #1a1a20;
+  --muted-foreground: #a1a1aa;
+
+  --border: #24242c;
+  --input: #24242c;
+  --ring: #cbd5e1;
+
+  --accent: #f5f5f4;
+  --accent-foreground: #0b0b0f;
+
+  --highlight: #60a5fa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-highlight: var(--highlight);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-serif-display), ui-serif, Georgia, "Times New Roman", serif;
+
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--foreground);
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Continuous, seamless logo marquee — one track holds two identical sets,
+   so translating by -50% loops without a visible seam. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
