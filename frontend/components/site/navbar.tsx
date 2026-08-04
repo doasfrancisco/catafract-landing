@@ -14,17 +14,19 @@ const NAV_LINKS = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
-/** Jump to an in-page section, offset for the fixed navbar. Works even when the
- *  URL hash is already that section (native anchors no-op on a repeat click) and
- *  when the mobile menu had locked body scroll. Instant, so we don't "fly"
- *  through sections that are still hidden by their scroll-reveal. */
+/** Smooth-scroll to an in-page section, offset for the fixed navbar. Works even
+ *  when the URL hash is already that section (native anchors no-op on a repeat
+ *  click) and when the mobile menu had locked body scroll. Dispatches
+ *  `reveal:all` first so the travel doesn't pass through sections still hidden
+ *  by their scroll-reveal (which read as blank / "not loading"). */
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   document.body.style.overflow = ""; // release the mobile-menu scroll lock first
+  window.dispatchEvent(new Event("reveal:all")); // show sections before we travel
   const NAV_OFFSET = 72; // h-16 navbar (64px) + a little air
   const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET);
-  window.scrollTo({ top, behavior: "auto" });
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
 export function Navbar() {

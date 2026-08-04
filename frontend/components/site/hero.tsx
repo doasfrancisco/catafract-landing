@@ -90,17 +90,10 @@ export function Hero() {
             : { duration: 32, repeat: Infinity, ease: "easeInOut" }
         }
       />
-      {/* Velo en degradado: cielo visible arriba (detrás del titular) y más
-          cobertura abajo, donde van subtítulo y botones. Termina en el color
-          de fondo del sitio para fundirse con la siguiente sección. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(247,246,243,0.2) 0%, rgba(247,246,243,0.42) 45%, rgba(247,246,243,0.82) 80%, rgba(247,246,243,0.96) 100%)",
-        }}
-      />
+      {/* Velo plano al 45% de blanco (tonalidad de la v3.0 — la que prefirió
+          el diseñador): suaviza las nubes de forma uniforme, cielo más claro y
+          parejo. */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-white/45" />
 
       <motion.div
         variants={reduce ? undefined : container}

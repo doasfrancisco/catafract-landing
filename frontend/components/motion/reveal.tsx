@@ -21,6 +21,22 @@ function clearFilter(el: HTMLElement | null) {
   if (el) el.style.filter = "";
 }
 
+/**
+ * Force every Reveal/Stagger to its shown state. The Navbar dispatches
+ * `reveal:all` right before a smooth in-page scroll so the page doesn't travel
+ * through sections still hidden by their scroll-reveal (which read as blank /
+ * "not loading"). Latches on for the rest of the session once fired.
+ */
+function useRevealAll() {
+  const [all, setAll] = React.useState(false);
+  React.useEffect(() => {
+    const on = () => setAll(true);
+    window.addEventListener("reveal:all", on);
+    return () => window.removeEventListener("reveal:all", on);
+  }, []);
+  return all;
+}
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -49,6 +65,7 @@ export function Reveal({
   ...rest
 }: RevealProps) {
   const reduce = useReducedMotion();
+  const revealAll = useRevealAll();
   const ref = React.useRef<HTMLDivElement>(null);
   const MotionTag = motion[as] as typeof motion.div;
 
@@ -60,14 +77,20 @@ export function Reveal({
     );
   }
 
+  const shown = { opacity: 1, y: 0, filter: "blur(0px)" };
   return (
     <MotionTag
       ref={ref}
       className={className}
       initial={{ opacity: 0, y, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      animate={revealAll ? shown : undefined}
+      whileInView={revealAll ? undefined : shown}
       viewport={{ once, margin: "-40px" }}
-      transition={{ duration: 0.55, ease: EASE, delay }}
+      transition={{
+        duration: revealAll ? 0.2 : 0.55,
+        ease: EASE,
+        delay: revealAll ? 0 : delay,
+      }}
       onAnimationComplete={() => clearFilter(ref.current)}
       {...rest}
     >
@@ -104,6 +127,7 @@ export function Stagger({
   once?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const revealAll = useRevealAll();
   if (reduce) return <div className={className}>{children}</div>;
 
   return (
@@ -111,7 +135,8 @@ export function Stagger({
       className={className}
       variants={containerVariants}
       initial="hidden"
-      whileInView="show"
+      animate={revealAll ? "show" : undefined}
+      whileInView={revealAll ? undefined : "show"}
       viewport={{ once, margin: "-30px" }}
     >
       {children}
