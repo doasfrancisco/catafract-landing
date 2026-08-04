@@ -76,11 +76,19 @@ export function Hero() {
     >
       <HeroAmbient reduce={reduce} />
 
-      {/* PRUEBA: imagen de fondo a pantalla completa del hero */}
-      <div
+      {/* Cielo de fondo con un zoom lento tipo Ken Burns: una escala que
+          "respira" (1 → 1.08 → 1) para que el loop no tenga salto de reinicio.
+          Transform en GPU (will-change) y estático con reduced-motion. */}
+      <motion.div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-cover bg-center"
+        className="absolute inset-0 -z-10 bg-cover bg-center will-change-transform"
         style={{ backgroundImage: "url('/hero-bg.webp')" }}
+        animate={reduce ? undefined : { scale: [1, 1.08, 1] }}
+        transition={
+          reduce
+            ? undefined
+            : { duration: 32, repeat: Infinity, ease: "easeInOut" }
+        }
       />
       {/* Velo en degradado: cielo visible arriba (detrás del titular) y más
           cobertura abajo, donde van subtítulo y botones. Termina en el color
