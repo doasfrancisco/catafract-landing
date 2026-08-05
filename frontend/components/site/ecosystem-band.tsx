@@ -20,7 +20,7 @@ function LogoSet({ ariaHidden }: { ariaHidden?: boolean }) {
   return (
     <ul
       aria-hidden={ariaHidden || undefined}
-      className="flex shrink-0 items-center gap-x-14 pr-14 sm:gap-x-20 sm:pr-20"
+      className="flex shrink-0 items-center gap-x-8 pr-8 sm:gap-x-20 sm:pr-20"
     >
       {ECOSYSTEM.map((logo) => (
         <li key={logo.name} className="flex items-center">

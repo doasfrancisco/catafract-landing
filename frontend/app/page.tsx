@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
+import { Challenges } from "@/components/site/challenges";
 import { EcosystemBand } from "@/components/site/ecosystem-band";
 import { Services } from "@/components/site/services";
 import { Cases } from "@/components/site/cases";
@@ -16,6 +17,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Challenges />
         <EcosystemBand />
         <Services />
         <Cases />

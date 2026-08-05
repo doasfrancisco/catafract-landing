@@ -126,3 +126,10 @@
     transform: translateX(-50%);
   }
 }
+
+/* Flowing dashes along the integration-diagram connection lines. */
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
