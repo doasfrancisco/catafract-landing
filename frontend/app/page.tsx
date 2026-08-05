@@ -17,8 +17,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Challenges />
         <EcosystemBand />
+        <Challenges />
         <Services />
         <Cases />
         <Process />
