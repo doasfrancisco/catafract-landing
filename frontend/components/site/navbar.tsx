@@ -20,13 +20,19 @@ const NAV_LINKS = [
  *  `reveal:all` first so the travel doesn't pass through sections still hidden
  *  by their scroll-reveal (which read as blank / "not loading"). */
 function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
+  if (!document.getElementById(id)) return;
   document.body.style.overflow = ""; // release the mobile-menu scroll lock first
   window.dispatchEvent(new Event("reveal:all")); // show sections before we travel
-  const NAV_OFFSET = 72; // h-16 navbar (64px) + a little air
-  const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET);
-  window.scrollTo({ top, behavior: "smooth" });
+  // Defer a frame: right after unlocking the body the page isn't scrollable yet,
+  // so a same-tick smooth scroll gets clamped to 0 (that's why the mobile menu
+  // links did nothing). Next frame the unlock has applied and the travel works.
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const NAV_OFFSET = 72; // h-16 navbar (64px) + a little air
+    const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET);
+    window.scrollTo({ top, behavior: "smooth" });
+  });
 }
 
 export function Navbar() {
@@ -36,6 +42,7 @@ export function Navbar() {
   // the navbar's backdrop-blur meanwhile: recomputing that blur every frame
   // during the roll-up made the close feel heavier once the glass bar showed.
   const [menuActive, setMenuActive] = React.useState(false);
+  const headerRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -72,8 +79,19 @@ export function Navbar() {
     return () => document.removeEventListener("click", onClick);
   }, []);
 
+  // Close the mobile menu when tapping/clicking outside the header.
+  React.useEffect(() => {
+    if (!open) return;
+    const onOutside = (e: Event) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onOutside);
+    return () => document.removeEventListener("pointerdown", onOutside);
+  }, [open]);
+
   return (
     <header
+      ref={headerRef}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled

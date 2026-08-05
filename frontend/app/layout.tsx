@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   authors: [{ name: "CATAFRACT" }],
   creator: "CATAFRACT",
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -56,11 +61,20 @@ export const metadata: Metadata = {
     siteName: "CATAFRACT",
     title: "CATAFRACT — Automatizamos procesos. Multiplicamos resultados.",
     description,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "CATAFRACT — Convertimos IA en ventaja competitiva",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "CATAFRACT — Automatizamos procesos. Multiplicamos resultados.",
     description,
+    images: ["/og.png"],
   },
   robots: {
     index: true,
