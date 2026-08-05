@@ -29,8 +29,19 @@ function scrollToSection(id: string) {
   requestAnimationFrame(() => {
     const el = document.getElementById(id);
     if (!el) return;
-    const NAV_OFFSET = 72; // h-16 navbar (64px) + a little air
-    const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET);
+    if (id === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    // Land the section's HEADING just below the fixed navbar — not the padding
+    // box top, which left a big empty gap above the title. Eating the section's
+    // top padding makes it read "from the top".
+    const padTop = parseFloat(getComputedStyle(el).paddingTop) || 0;
+    const HEADING_OFFSET = 80; // navbar (64px) + a little air
+    const top = Math.max(
+      0,
+      el.getBoundingClientRect().top + window.scrollY + padTop - HEADING_OFFSET,
+    );
     window.scrollTo({ top, behavior: "smooth" });
   });
 }
