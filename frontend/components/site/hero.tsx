@@ -3,7 +3,6 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { useIsDesktop } from "@/lib/use-is-desktop";
 
 // A calm, unhurried ease — the whole point of the section is restraint.
 const EASE = [0.22, 0.61, 0.36, 1] as const;
@@ -18,9 +17,10 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
 };
 
-/** Barely-there ambient: a soft light behind the headline, a faint grid, and
- *  two slow-drifting pools of light. Everything is near-invisible by design. */
-function HeroAmbient({ animate }: { animate: boolean }) {
+/** Barely-there ambient: a faint grid and a soft light behind the headline.
+ *  (The animated pools of light were removed — they sat behind the opaque sky,
+ *  so they were invisible and only cost performance.) */
+function HeroAmbient() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
       {/* Faint grid, masked to a soft pool around the headline. */}
@@ -40,45 +40,19 @@ function HeroAmbient({ animate }: { animate: boolean }) {
             "radial-gradient(44% 40% at 50% 42%, rgba(15,23,42,0.05), transparent 72%)",
         }}
       />
-      {/* Slow-moving pools of light — a whisper, never a spectacle.
-          Desktop only: they sit behind the opaque sky, so on mobile they were
-          pure wasted compute that made scrolling feel laggy. */}
-      {animate && (
-        <>
-          <motion.div
-            className="absolute left-[8%] top-[8%] h-[50vw] w-[50vw] max-h-[660px] max-w-[660px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(37,99,235,0.14), transparent 64%)",
-            }}
-            animate={{ x: [0, 140, 70, 0], y: [0, 80, 150, 0] }}
-            transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-[8%] right-[6%] h-[46vw] w-[46vw] max-h-[620px] max-w-[620px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(15,23,42,0.12), transparent 64%)",
-            }}
-            animate={{ x: [0, -130, -50, 0], y: [0, -90, -170, 0] }}
-            transition={{ duration: 23, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </>
-      )}
     </div>
   );
 }
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const desktop = useIsDesktop();
 
   return (
     <section
       id="top"
       className="relative isolate flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-white px-6 pb-24 pt-28 md:pb-28"
     >
-      <HeroAmbient animate={!reduce && desktop} />
+      <HeroAmbient />
 
       {/* Cielo de fondo con un zoom lento tipo Ken Burns: una escala que
           "respira" (1 → 1.08 → 1) para que el loop no tenga salto de reinicio.
