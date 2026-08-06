@@ -65,7 +65,7 @@ export function Hero() {
         transition={
           reduce
             ? undefined
-            : { duration: 32, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 22, repeat: Infinity, ease: "easeInOut" }
         }
       />
       {/* Velo plano al 45% de blanco (tonalidad de la v3.0 — la que prefirió
