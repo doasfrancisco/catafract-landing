@@ -20,17 +20,18 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* Shared frame: a soft "canvas" so each visual reads as a real product surface. */
-function Canvas({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="relative h-[248px] overflow-hidden rounded-xl border border-border bg-gradient-to-b from-muted/40 to-card p-3.5">
-      {children}
-    </div>
-  );
+/* Visuals for the blue "solutions" cards. Rendered monochrome — white + glass —
+   directly on the card's blue gradient, with no inner frame, echoing the Domu
+   product-surface style. Each depicts the RESOLVED state (the solution at
+   work), which is precisely why they live here and not in the problem beat. */
+
+/* Fixed-height stage so the three cards line up regardless of the visual. */
+function Stage({ children }: { children: React.ReactNode }) {
+  return <div className="relative h-[208px] w-full">{children}</div>;
 }
 
 /* ------------------------------------------------------------------ */
-/*  Card 1 — workflow automation                                       */
+/*  Card 1 — end-to-end automation                                     */
 /* ------------------------------------------------------------------ */
 const FLOW: { icon: LucideIcon; label: string; state?: "active" | "done" }[] = [
   { icon: Inbox, label: "Solicitud del cliente" },
@@ -40,36 +41,33 @@ const FLOW: { icon: LucideIcon; label: string; state?: "active" | "done" }[] = [
   { icon: CircleCheck, label: "Tarea completada", state: "done" },
 ];
 
-export function WorkflowVisual() {
+export function AutomationVisual() {
   const reduce = useReducedMotion();
   return (
-    <Canvas>
+    <Stage>
       <div className="flex h-full flex-col justify-center">
         {FLOW.map((s, i) => {
           const Icon = s.icon;
+          const solid = s.state === "active" || s.state === "done";
           return (
             <React.Fragment key={s.label}>
               <div
                 className={cn(
-                  "flex items-center gap-2.5 rounded-lg border bg-card px-2.5 py-1.5 shadow-[0_1px_2px_rgba(17,17,17,0.03)]",
+                  "flex items-center gap-2.5 rounded-lg border px-2.5 py-1.5 backdrop-blur-sm",
                   s.state === "active"
-                    ? "border-blue-600/40 ring-1 ring-blue-600/15"
-                    : "border-border",
+                    ? "border-white/45 bg-white/15 ring-1 ring-white/25"
+                    : "border-white/15 bg-white/[0.08]",
                 )}
               >
                 <span
                   className={cn(
                     "flex size-6 shrink-0 items-center justify-center rounded-md",
-                    s.state === "active"
-                      ? "bg-blue-600/10 text-blue-600"
-                      : s.state === "done"
-                        ? "bg-foreground text-white"
-                        : "bg-muted text-foreground/70",
+                    solid ? "bg-white text-[#2563eb]" : "bg-white/15 text-white",
                   )}
                 >
                   <Icon className="size-3.5" strokeWidth={2} />
                 </span>
-                <span className="truncate font-mono text-[11px] tracking-tight text-foreground/80">
+                <span className="truncate font-mono text-[11px] tracking-tight text-white/85">
                   {s.label}
                 </span>
                 {s.state === "active" && (
@@ -77,8 +75,8 @@ export function WorkflowVisual() {
                     {[0, 1, 2].map((d) => (
                       <motion.span
                         key={d}
-                        className="size-1 rounded-full bg-blue-600"
-                        animate={reduce ? undefined : { opacity: [0.2, 1, 0.2] }}
+                        className="size-1 rounded-full bg-white"
+                        animate={reduce ? undefined : { opacity: [0.25, 1, 0.25] }}
                         transition={{
                           duration: 1,
                           repeat: Infinity,
@@ -90,10 +88,10 @@ export function WorkflowVisual() {
                 )}
               </div>
               {i < FLOW.length - 1 && (
-                <div className="relative ml-[19px] h-2.5 w-px bg-border">
+                <div className="relative ml-[19px] h-2.5 w-px bg-white/25">
                   {!reduce && (
                     <motion.span
-                      className="absolute -left-[2px] top-0 size-[5px] rounded-full bg-blue-600"
+                      className="absolute -left-[2px] top-0 size-[5px] rounded-full bg-white"
                       animate={{ y: [-2, 10], opacity: [0, 1, 0] }}
                       transition={{
                         duration: 1.8,
@@ -109,26 +107,26 @@ export function WorkflowVisual() {
           );
         })}
       </div>
-    </Canvas>
+    </Stage>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Card 2 — system integration                                        */
+/*  Card 2 — every system, one source of truth                         */
 /* ------------------------------------------------------------------ */
 const NODES: { icon: LucideIcon; label: string; x: number; y: number }[] = [
-  { icon: Database, label: "ERP", x: 20, y: 20 },
-  { icon: Users, label: "CRM", x: 80, y: 20 },
-  { icon: MessageCircle, label: "WhatsApp", x: 11, y: 52 },
-  { icon: LineChart, label: "Dashboard", x: 89, y: 52 },
-  { icon: Mail, label: "Email", x: 27, y: 85 },
-  { icon: Webhook, label: "API", x: 73, y: 85 },
+  { icon: Database, label: "ERP", x: 20, y: 22 },
+  { icon: Users, label: "CRM", x: 80, y: 22 },
+  { icon: MessageCircle, label: "WhatsApp", x: 12, y: 54 },
+  { icon: LineChart, label: "Dashboard", x: 88, y: 54 },
+  { icon: Mail, label: "Email", x: 28, y: 86 },
+  { icon: Webhook, label: "API", x: 72, y: 86 },
 ];
 
 export function IntegrationVisual() {
   const reduce = useReducedMotion();
   return (
-    <Canvas>
+    <Stage>
       <div className="relative h-full w-full">
         <svg
           className="absolute inset-0 h-full w-full"
@@ -142,7 +140,7 @@ export function IntegrationVisual() {
               y1="50"
               x2={n.x}
               y2={n.y}
-              className="stroke-border"
+              className="stroke-white/30"
               strokeWidth="1.25"
               strokeDasharray="3 4"
               strokeLinecap="round"
@@ -160,29 +158,29 @@ export function IntegrationVisual() {
           return (
             <div
               key={n.label}
-              className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-full border border-border bg-card py-1 pl-1 pr-2.5 shadow-[0_1px_3px_rgba(17,17,17,0.05)]"
+              className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] py-1 pl-1 pr-2.5 backdrop-blur-sm"
               style={{ left: `${n.x}%`, top: `${n.y}%` }}
             >
-              <span className="flex size-5 items-center justify-center rounded-full bg-muted text-foreground/70">
+              <span className="flex size-5 items-center justify-center rounded-full bg-white/15 text-white">
                 <Icon className="size-3" strokeWidth={2} />
               </span>
-              <span className="font-mono text-[10px] tracking-tight text-foreground/75">
+              <span className="font-mono text-[10px] tracking-tight text-white/80">
                 {n.label}
               </span>
             </div>
           );
         })}
 
-        {/* orchestration hub */}
+        {/* orchestration hub — Catafract at the center, now rightly so */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {!reduce && (
             <motion.span
-              className="absolute inset-0 rounded-full bg-blue-600/15"
-              animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
+              className="absolute inset-0 rounded-full bg-white/25"
+              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
             />
           )}
-          <div className="relative flex size-14 items-center justify-center rounded-full border border-foreground/10 bg-card shadow-[0_2px_10px_rgba(17,17,17,0.08)]">
+          <div className="relative flex size-14 items-center justify-center rounded-full bg-white shadow-[0_6px_18px_rgba(10,20,60,0.35)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/catafract-mark.png"
@@ -193,12 +191,12 @@ export function IntegrationVisual() {
           </div>
         </div>
       </div>
-    </Canvas>
+    </Stage>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Card 3 — AI agent                                                  */
+/*  Card 3 — AI that actually operates                                 */
 /* ------------------------------------------------------------------ */
 const AGENT_STEPS: { icon: LucideIcon; label: string }[] = [
   { icon: Sparkles, label: "Busca en la documentación" },
@@ -210,24 +208,24 @@ const AGENT_STEPS: { icon: LucideIcon; label: string }[] = [
 export function AgentVisual() {
   const reduce = useReducedMotion();
   return (
-    <Canvas>
+    <Stage>
       <div className="flex h-full flex-col gap-2">
         {/* header */}
-        <div className="flex items-center gap-2 border-b border-border pb-2">
-          <span className="flex size-6 items-center justify-center rounded-md bg-foreground text-white">
+        <div className="flex items-center gap-2 border-b border-white/15 pb-2">
+          <span className="flex size-6 items-center justify-center rounded-md bg-white text-[#2563eb]">
             <Sparkles className="size-3.5" strokeWidth={2} />
           </span>
-          <span className="font-mono text-[11px] tracking-tight text-foreground/80">
+          <span className="font-mono text-[11px] tracking-tight text-white/85">
             Agente IA
           </span>
-          <span className="ml-auto flex items-center gap-1 text-[10px] text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
+          <span className="ml-auto flex items-center gap-1 text-[10px] text-white/70">
+            <span className="size-1.5 rounded-full bg-emerald-300" />
             en línea
           </span>
         </div>
 
         {/* customer message */}
-        <div className="max-w-[88%] self-start rounded-lg rounded-tl-sm bg-muted px-2.5 py-1.5 text-[11px] leading-snug text-foreground/80">
+        <div className="max-w-[88%] self-start rounded-lg rounded-tl-sm bg-white/[0.12] px-2.5 py-1.5 text-[11px] leading-snug text-white/85">
           ¿Cuál es el estado de mi pedido #4821?
         </div>
 
@@ -241,12 +239,12 @@ export function AgentVisual() {
                 <span
                   className={cn(
                     "flex size-5 items-center justify-center rounded-md",
-                    last ? "bg-blue-600/10 text-blue-600" : "bg-muted text-foreground/60",
+                    last ? "bg-white text-[#2563eb]" : "bg-white/[0.12] text-white",
                   )}
                 >
                   <Icon className="size-3" strokeWidth={2} />
                 </span>
-                <span className="font-mono text-[11px] tracking-tight text-foreground/75">
+                <span className="font-mono text-[11px] tracking-tight text-white/80">
                   {s.label}
                 </span>
                 {last ? (
@@ -254,8 +252,8 @@ export function AgentVisual() {
                     {[0, 1, 2].map((d) => (
                       <motion.span
                         key={d}
-                        className="size-1 rounded-full bg-blue-600"
-                        animate={reduce ? undefined : { opacity: [0.2, 1, 0.2] }}
+                        className="size-1 rounded-full bg-white"
+                        animate={reduce ? undefined : { opacity: [0.25, 1, 0.25] }}
                         transition={{
                           duration: 1,
                           repeat: Infinity,
@@ -266,7 +264,7 @@ export function AgentVisual() {
                   </span>
                 ) : (
                   <CircleCheck
-                    className="ml-auto size-3.5 text-emerald-500"
+                    className="ml-auto size-3.5 text-emerald-300"
                     strokeWidth={2}
                   />
                 )}
@@ -275,6 +273,6 @@ export function AgentVisual() {
           })}
         </div>
       </div>
-    </Canvas>
+    </Stage>
   );
 }

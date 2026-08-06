@@ -16,7 +16,7 @@ const NETWORK: BrandLogoData[] = [
 export function NetworkBand() {
   return (
     <section className="border-t border-border bg-muted/30 py-20 md:py-24">
-      <Reveal className="mx-auto w-full max-w-4xl px-6 text-center md:px-8">
+      <Reveal className="mx-auto w-full max-w-4xl px-6 text-center md:px-10">
         <p className="text-[13px] text-muted-foreground">
           Acceso a talento de clase mundial
         </p>

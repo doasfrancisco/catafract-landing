@@ -42,7 +42,7 @@ export function Faq() {
 
   return (
     <section id="faq" className="scroll-mt-4 border-t border-border py-20 md:py-24">
-      <div className="mx-auto w-full max-w-3xl px-6 md:px-8">
+      <div className="mx-auto w-full max-w-3xl px-6 md:px-10">
         <div className="text-center">
           <Reveal>
             <span className="block font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">

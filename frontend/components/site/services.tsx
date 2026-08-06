@@ -59,7 +59,7 @@ const SERVICES: Service[] = [
 export function Services() {
   return (
     <section id="servicios" className="scroll-mt-4 py-20 md:py-24">
-      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
         <SectionHeading
           eyebrow="Servicios"
           title="Todo lo que tu empresa necesita para automatizar."

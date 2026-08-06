@@ -8,7 +8,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Servicios", href: "#servicios" },
+  { label: "Soluciones", href: "#soluciones" },
+  { label: "Proceso", href: "#proceso" },
   { label: "Casos", href: "#casos" },
   { label: "Nosotros", href: "#nosotros" },
   { label: "Contacto", href: "#contacto" },
@@ -112,7 +113,7 @@ export function Navbar() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 md:px-8">
+      <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 md:px-10">
         <a
           href="#top"
           className="rounded-md text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
@@ -175,7 +176,7 @@ export function Navbar() {
             }}
             className="overflow-hidden border-b border-border bg-background md:hidden"
           >
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 pb-6 pt-2">
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-6 pb-6 pt-2">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}

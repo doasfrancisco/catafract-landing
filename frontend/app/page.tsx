@@ -1,10 +1,10 @@
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
-import { Challenges } from "@/components/site/challenges";
 import { EcosystemBand } from "@/components/site/ecosystem-band";
-import { Services } from "@/components/site/services";
-import { Cases } from "@/components/site/cases";
+import { Problems } from "@/components/site/problems";
 import { Process } from "@/components/site/process";
+import { Solutions } from "@/components/site/solutions";
+import { Cases } from "@/components/site/cases";
 import { WhyCatafract } from "@/components/site/why-catafract";
 import { NetworkBand } from "@/components/site/network-band";
 import { Faq } from "@/components/site/faq";
@@ -18,10 +18,10 @@ export default function Home() {
       <main>
         <Hero />
         <EcosystemBand />
-        <Challenges />
-        <Services />
-        <Cases />
+        <Problems />
+        <Solutions />
         <Process />
+        <Cases />
         <WhyCatafract />
         <NetworkBand />
         <Faq />

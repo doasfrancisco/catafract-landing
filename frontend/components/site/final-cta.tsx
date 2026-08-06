@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 export function FinalCta() {
   return (
-    <section id="contacto" className="scroll-mt-4 px-6 py-20 md:px-8 md:py-24">
-      <Reveal className="mx-auto w-full max-w-6xl">
+    <section id="contacto" className="scroll-mt-4 px-6 py-20 md:px-10 md:py-24">
+      <Reveal className="mx-auto w-full max-w-7xl">
         <div
           className="relative overflow-hidden rounded-[28px] border border-white/15 px-6 py-20 text-center md:px-16 md:py-28"
           style={{

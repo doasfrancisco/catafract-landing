@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,10 +14,11 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Display serif for headings — Cormorant Garamond (SIL OFL, free for
-// commercial use). To swap for licensed Tiempos later, replace this with
-// next/font/local pointing at the .woff2 files.
-const cormorant = Cormorant_Garamond({
+// Display serif for headings — Newsreader (SIL OFL, free for commercial use).
+// Replaced Cormorant Garamond, whose high stroke contrast and small x-height
+// made every heading read thin at the same nominal weight. Newsreader keeps a
+// moderate contrast and a larger x-height, so a 500 actually looks like a 500.
+const newsreader = Newsreader({
   variable: "--font-serif-display",
   subsets: ["latin"],
   weight: ["500", "600"],
@@ -96,7 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
     >
       <body className="min-h-dvh bg-background text-foreground">{children}</body>
     </html>

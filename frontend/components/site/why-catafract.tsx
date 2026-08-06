@@ -35,7 +35,7 @@ export function WhyCatafract() {
       id="nosotros"
       className="scroll-mt-4 border-t border-border bg-muted/30 py-20 md:py-24"
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 md:px-8 lg:grid-cols-2 lg:gap-16">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 md:px-10 lg:grid-cols-2 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
             <span className="block font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">

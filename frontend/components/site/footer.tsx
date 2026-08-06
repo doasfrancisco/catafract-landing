@@ -26,7 +26,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8">
+      <div className="mx-auto w-full max-w-7xl px-6 py-14 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xs">
             <Logo />

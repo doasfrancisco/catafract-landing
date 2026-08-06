@@ -133,3 +133,38 @@
     stroke-dashoffset: -12;
   }
 }
+
+/* Orbiting tool ring on the "decisiones basadas en datos" card. The ring spins
+   clockwise while each node counter-spins at the same rate, so the icons orbit
+   without ever turning upside down. Keyframes live here (rather than
+   framer-motion) so the solution visuals stay server components. */
+@keyframes orbit-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Solution-card gradient — the exact three oklab stops measured off the Domu
+   reference file, kept in oklab rather than converted to hex so there is no
+   round-trip error: sRGB hex would land ~10 points off on the top stop.
+   Deep cobalt at the top easing to a lighter, cyaner blue at the base. */
+@utility bg-solution-card {
+  background-image: linear-gradient(
+    in oklab 180deg,
+    oklab(48.2% -0.039 -0.151) 0%,
+    oklab(59.8% -0.044 -0.126) 50%,
+    oklab(67.5% -0.041 -0.103) 100%
+  );
+}

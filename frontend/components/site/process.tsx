@@ -30,7 +30,7 @@ const STEPS = [
 export function Process() {
   return (
     <section id="proceso" className="scroll-mt-4 py-20 md:py-24">
-      <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
         <SectionHeading
           eyebrow="Proceso"
           title="Un método claro, de principio a fin."

@@ -81,22 +81,24 @@ export function Hero() {
       >
         <motion.h1
           variants={reduce ? undefined : item}
-          className="font-serif font-semibold leading-[1] tracking-[-0.005em] text-foreground"
+          // Weight 500, not 600: the old 600 existed to give Cormorant's thin
+          // strokes some presence. Newsreader carries far more weight per step,
+          // so 600 read heavy at display size — and Domu never goes past 500.
+          // Tracking tightened to match their -0.05em on large serif.
+          className="text-balance font-serif font-medium leading-[1.04] tracking-[-0.035em] text-foreground"
           style={{ fontSize: "clamp(2.75rem, 6vw, 4.5rem)" }}
         >
-          Convertimos IA en
-          <br />
-          <span className="italic">ventaja competitiva</span>
-          <br />
-          para empresas.
+          Implementamos tecnología que genera{" "}
+          <span className="italic">resultados medibles.</span>
         </motion.h1>
 
         <motion.p
           variants={reduce ? undefined : item}
           className="mt-8 max-w-[700px] text-pretty text-[1.0625rem] leading-[1.6] text-foreground/80 sm:text-[1.125rem]"
         >
-          Diseñamos e implementamos sistemas de inteligencia artificial que
-          reducen costos, automatizan operaciones y generan resultados medibles.
+          Combinamos ingeniería de software, automatización e inteligencia
+          artificial para optimizar operaciones, reducir costos y crear nuevas
+          oportunidades de crecimiento.
         </motion.p>
 
         <motion.div

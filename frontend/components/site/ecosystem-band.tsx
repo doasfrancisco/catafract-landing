@@ -41,7 +41,7 @@ export function EcosystemBand() {
 
         {/* Constrained to the content column so the logos fade out in line
             with the header logo, not the screen edges. */}
-        <div className="mx-auto mt-8 w-full max-w-6xl px-6 md:px-8">
+        <div className="mx-auto mt-8 w-full max-w-7xl px-6 md:px-10">
           {/* Continuous marquee — pauses on hover, hidden under reduced motion. */}
           <div className="group relative overflow-hidden [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] motion-reduce:hidden">
             <div className="flex w-max will-change-transform [animation:marquee_25s_linear_infinite] group-hover:[animation-play-state:paused]">
